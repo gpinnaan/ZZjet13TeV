@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2010)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /afs/cern.ch/work/l/lfinco/VVScattering/Analysis_Note/AN/notes/tmp/AN-14-135_temp.aux
+The style file: auto_generated.bst
+Database file #1: auto_generated.bib
+You've used 35 entries,
+            2537 wiz_defined-function locations,
+            876 strings with 12145 characters,
+and the built_in function-call counts, 8986 in all, are:
+= -- 927
+> -- 170
+< -- 3
++ -- 68
+- -- 33
+* -- 820
+:= -- 1152
+add.period$ -- 40
+call.type$ -- 35
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 35
+duplicate$ -- 583
+empty$ -- 996
+format.name$ -- 34
+if$ -- 2329
+int.to.chr$ -- 0
+int.to.str$ -- 35
+missing$ -- 87
+newline$ -- 119
+num.names$ -- 24
+pop$ -- 196
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 268
+stack$ -- 0
+substring$ -- 327
+swap$ -- 206
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 50
+width$ -- 37
+write$ -- 405

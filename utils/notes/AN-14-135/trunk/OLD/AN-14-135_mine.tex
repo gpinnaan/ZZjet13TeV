@@ -1,0 +1,849 @@
+% Customizable fields and text areas start with % >> below.
+% Lines starting with the comment character (%) are normally removed before release outside the collaboration, but not those comments ending lines
+
+% svn info. These are modified by svn at checkout time.
+% The last version of these macros found before the maketitle will be the one on the front page,
+% so only the main file is tracked.
+% Do not edit by hand!
+\RCS$Revision: 297303 $
+\RCS$HeadURL: svn+ssh://svn.cern.ch/reps/tdr2/notes/AN-14-135/trunk/AN-14-135.tex $
+\RCS$Id: AN-14-135.tex 297303 2015-07-20 09:43:12Z bellan $
+%%%%%%%%%%%%% local definitions %%%%%%%%%%%%%%%%%%%%%
+% This allows for switching between one column and two column (cms@external) layouts
+% The widths should  be modified for your particular figures. You'll need additional copies if you have more than one standard figure size.
+\newlength\cmsFigWidth
+\ifthenelse{\boolean{cms@external}}{\setlength\cmsFigWidth{0.85\columnwidth}}{\setlength\cmsFigWidth{0.4\textwidth}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsLeft}{top}}{\providecommand{\cmsLeft}{left}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsRight}{bottom}}{\providecommand{\cmsRight}{right}}
+%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
+\cmsNoteHeader{AN-14-135} % This is over-written in the CMS environment: useful as preprint no. for export versions
+% >> Title: please make sure that the non-TeX equivalent is in PDFTitle below
+\title{Measurement of the differential cross section for ZZ~$\rightarrow 4 \ell$ produced in association with jets in pp collisions at $\sqrt{s}=8$~TeV}
+
+% >> Authors
+%Author is always "The CMS Collaboration" for PAS and papers, so author, etc, below will be ignored in those cases
+%For multiple affiliations, create an address entry for the combination
+%To mark authors as primary, use the \author* form
+
+\address[unito]{Universi\`a degli Studi di Torino and INFN.}
+\address[infnto]{INFN Torino.}
+\address[hig]{The Higgs to four leptons team.}
+\author[unito]{N. Amapane}
+\author[unito]{R. Bellan} 
+\author[unito]{L. Finco} 
+\author[unito]{G. Gonella} 
+\author[unito]{G. Pinna}
+\author[infnto]{C. Mariotti} 
+\author[hig]{many other people}
+
+% >> Date
+% The date is in yyyy/mm/dd format. Today has been
+% redefined to match, but if the date needs to be fixed, please write it in this fashion.
+% For papers and PAS, \today is taken as the date the head file (this one) was last modified according to svn: see the RCS Id string above.
+% For the final version it is best to "touch" the head file to make sure it has the latest date.
+\date{\today}
+
+% >> Abstract
+% Abstract processing:
+% 1. **DO NOT use \include or \input** to include the abstract: our abstract extractor will not search through other files than this one.
+% 2. **DO NOT use %**                  to comment out sections of the abstract: the extractor will still grab those lines (and they won't be comments any longer!).
+<<<<<<< .mine
+% 3. For PASs: **DO NOT use tex macros**         in the abstract: CDS MathJax processor used on the abstract doesn't understand t   hem _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
+\abstract{
+   A measurement of the inclusive ZZ production cross section in proton-proton collisions at$ \sqrt{s} =$ 8 TeV is presented.
+   The analysis is based on a data sample collected with the CMS Experiment at the LHC, corresponding to an integrated 
+   luminosity of 19.7 fb$^{-1}$. The measurements are performed in the leptonic decay modes $ZZ \to \ell\ell\ell'\ell'$, 
+   where $\ell,\ell' = e, \mu$. The measured total cross section is $\sigma (pp\to ZZ) = 7.5 \pm 0.5 (stat.) \pm 0.5 (syst.)$ pb, 
+   for both Z bosons produced in the mass range  $60 < m_{Z} < 120$ GeV and it is consistent with Standard Model
+   predictions. Differential cross sections are measured, in particular as a function of variables related to the jets
+   produced in the event.%, and a small discrepancy between data and the theoretical predictions is observed.   
+      
+
+=======
+% 3. For PASs: **DO NOT use tex macros**         in the abstract: CDS MathJax processor used on the abstract doesn't understand them _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
+\abstract{In this note we present the measurement of the differential cross section for two Z bosons produced
+in association with jets, extracted from pp collision data at $\sqrt{s}$~=~8~TeV. The measurement is done
+considering the processes with leptonic decays of the Z bosons in either electrons or muons.
+The analysis is based on a data sample collected with the CMS Experiment at the LHC, corresponding to an integrated 
+luminosity of 19.7 fb$^{-1}$. The measurements are performed in the leptonic decay modes $ZZ \to \ell\ell\ell'\ell'$, 
+where $\ell,\ell' = e, \mu$. The measured total cross section is $\sigma (pp\to ZZ) = 7.5 \pm 0.5 (stat.) \pm 0.5 (syst.)$ pb, 
+for both Z bosons produced in the mass range  $60 < m_{Z} < 120$ GeV and it is consistent with Standard Model
+predictions. Differential cross sections are measured, in particular as a function of variables related to the jets
+produced in the event.
+>>>>>>> .r297631
+}
+
+% >> PDF Metadata
+% Do not comment out the following hypersetup lines (metadata). They will disappear in NODRAFT mode and are needed by CDS.
+% Also: make sure that the values of the metadata items are sensible and are in plain text:
+% (1) no TeX! -- for \sqrt{s} use sqrt(s) -- this will show with extra quote marks in the draft version but is okay).
+% (2) no %.
+% (3) No curly braces {}.
+\hypersetup{%
+pdfauthor={R. Bellan},%
+pdftitle={Measurement of the differential cross section for ZZ rightarrow 4 ell produced in association with jets in pp collisions at sqrt s = 8 TeV},%
+pdfsubject={CMS},%
+pdfkeywords={CMS, physics, software, computing}}
+
+\maketitle %maketitle comes after all the front information has been supplied
+% >> Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% **DO NOT REMOVE THE BIBLIOGRAPHY** which is located before the appendix.
+%% You can take the text between here and the bibiliography as an example which you should replace with the actual text of your document.
+%% If you include other TeX files, be sure to use "\input{filename}" rather than "\input filename".
+%% The latter works for you, but our parser looks for the braces and will break when uploading the document.
+%%%%%%%%%%%%%%%
+<<<<<<< .mine
+\section{Introduction}
+The study of vector boson pair production in proton-proton collisions is crucial both in order to check the gauge structure
+of the Standard Model (SM) and in the search of new physics. The production of pairs of vector bosons and their associated 
+decay particles enter indeed as irreducible backgrounds for many Higgs and new physics searches and it is thus extremely 
+important to measure these processes with high precision. \\
+\\
+Previous measurements of the inclusive $ZZ$ cross section by the CMS Collaboration at the LHC were performed in the 
+$ZZ \to \ell\ell\ell'\ell'$ decay channels, where $\ell = e,\mu$ and $\ell' = e,\mu,\tau$ with the data corresponding
+to an integrated luminosity of 5.1 (19.6) fb$^{-1}$ at $\sqrt{s}= 7(8)$ TeV [FIXME ref]. The measured total cross section is 
+$\sigma(pp \to ZZ) =  6.24^{+0.86}_{-0.80}\ (stat.)^{+0.41}_{-0.32}(syst.) \pm 0.14 (lumi.)$ pb at $\sqrt{s}= 7$ TeV and $7.7 \pm
+0.5 (stat.) ^{+0.5}_{-0.4}(syst.) \pm 0.4 (theo.) \pm 0.2 (lumi.)$ at $\sqrt{s}= 8$ TeV, for both Z bosons in the mass
+range $60 < m_{Z} < 120$ GeV. The ATLAS Collaboration measured a total cross section of $6.7 \pm 0.7 (stat.) ^{+0.4}_{-0.3}(syst.)
+\pm 0.3 (lumi.)$ pb using $ZZ\to \ell\ell\ell'\ell'$ and  $ZZ\to \ell\ell\nu\nu$ final states with a data sample corresponding
+to an integrated luminosity of 4.6 fb$^{-1}$ at $\sqrt{s}= 7$ TeV and $66 < m_{Z} < 116$ GeV. The ATLAS
+ result of the total ZZ production cross section  at $\sqrt{s}= 8$ TeV is
+ $\sigma(pp \to ZZ) =  7.1^{+0.5}_{-0.4}\ (stat.)\pm 0.3 (syst.) 
+\pm 0.2 (lumi.)$ pb, measured in the $ZZ\to \ell\ell\ell'\ell'$ final state, with $66 < m_{Z} < 116$ GeV and using
+a data sample of 20.3 fb$^{-1}$. Measurements of the $ZZ$ cross sections performed at the Tevatron are
+summarized in Refs. (FIXME). All measurements are found to agree with the corresponding SM predictions.\\
+\\
+In this analysis, which is based on the full 2012 data set and corresponds to an integrated
+luminosity of 19.7 fb$^{-1}$, results are presented for the $ZZ$ inclusive and differential cross sections, as a function
+of $m_{ZZ}$ and some interesting variables related to the jets produced in the event. The cross sections are measured for both $Z$
+bosons in the mass range $60 < m_{Z} < 120$ GeV and the contributions from virtual photon exchange are
+included. With respect to the previous CMS  measurements, the latest data reprocessing is used (22Jan2013ReReco).
+=======
+>>>>>>> .r297631
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% --------------------------------------------------------- %%
+\section{Introduction}
+\label{sec:introduction}
+\input{introduction}
+%% --------------------------------------------------------- %%
+
+
+<<<<<<< .mine
+\section{Data sets and event selection}
+The data samples used in this analysis correspond to an integrated luminosity of 19.7 fb$^{-1}$ at  $\sqrt{s}= 8$ TeV
+collected in 2012. The integrated luminosity is measured using data from the HF
+system and the pixel detector [FIXME-WW]. The uncertainty in the integrated luminosity measurement is
+2.6\%.\\
+\\
+The CMS standard selection of runs and luminosity sections is applied, which requires high quality data with a 
+good functioning of the different sub-detectors. Events are selected online from the presence of a pair of electrons
+or muons, or a triplet of electrons. Triggers requiring an electron and a muon are also used. The
+minimal transverse momenta ($p_T$) of the first and second lepton are 17 and 8 GeV, respectively,
+for the double lepton triggers, while they are 15, 8 and 5 GeV for the triple electron trigger.
+More details can be found in [16, 17W-FIXME].The trigger efficiency for $ZZ$ events within the acceptance of this
+ analysis is greater than 98\% (to check, FIXME).\\
+\\
+Events with identified and isolated primary electrons or muons are first selected by the offline
+selection. We require a $Z$ candidate formed with a pair of leptons of the same flavour and
+opposite charge. The FSR photons are kept if $|m_{\ell\ell\gamma} - m_Z | < |m_{\ell\ell} - m_Z | $ and $m_{\ell\ell\gamma} < 100$ GeV and
+in the following, the presence of the photons in the $\ell\ell$ kinematics is implicit.\\ 
+The lepton pair with an invariant mass closest to the nominal $Z$ mass is denoted $Z_1$. A second $\ell^+\ell^-$􀀀 pair is required and denoted $Z_2$. If more than one $Z_2$ candidate satisfies all criteria, the pair of leptons
+ with the highest scalar sum of $p_T$ is chosen. Both $Z$ candidates have to satisfy $60 < m_Z < 120$ GeV.
+ Among the four selected leptons forming the $Z_1$ and the $Z_2$ candidates at least one should have $p_T \ge 20$ GeV and another
+ one have $p_T \ge 10$ GeV  and any opposite-charge pair of leptons chosen among the four selected
+ leptons satisfy $m_{\ell\ell} \ge 4$ GeV. Finally the phase space is reduced to the signal region by
+ requiring $m_{4\ell} \ge 100$ GeV.
+=======
+%% --------------------------------------------------------- %%
+\section{Dataset and Monte Carlo Samples}
+\label{sec:samples}
+\input{samples}
+%% --------------------------------------------------------- %%
+>>>>>>> .r297631
+
+<<<<<<< .mine
+\section{Estimation of Backgrounds}
+The lepton identification and isolation requirements described in Section [FIXME] significantly suppress
+all background contributions, and the remnant portion of them is very small. The irreducible background
+is represented by processes which contain four prompt leptons, i.e. isolated leptons produced with high transverse momentum,
+from non-signal processes, such as $t\bar{t}Z$, $WWZ$ and $t\bar{t}WW$. This component is almost negligible and it is estimated
+ using MC samples (see Fig~\ref{fig:irr_bkg}).
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Mass_Irreducible_Bkg_MadGraphSet}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_Irreducible_Bkg_MadGraphSet}
+     \caption{Irreducible background component in the signal region as a function of the invariant mass of the 4 lepton system (\cmsLeft) and the reconstructed number of jets produced in the event (\cmsRight). Points represent the data, the stacked histogram represents the \texttt{MadGraph+MCFM+Phantom} predictions for $ZZ$ signal and background contributions.}
+    \label{fig:irr_bkg}
+  \end{center}
+\end{figure}
+ The main background contribution arises mostly from the $Z$ and $WZ$ production in association with jets, as well as $t\bar{t}$.
+In all these cases, a jet or a non-prompt lepton (i.e. lepton produced in heavy meson decays) is misidentified as an isolated 
+electron or muon. These processes are referred to as reducible background and are estimated using a data driven method, known
+as ``method A'' in the $H\to ZZ \to 4\ell$ analysis [FIXME]. This method is based on two control samples, obtained 
+as subsets of four lepton events, by requiring a Z$_1$ candidate and two additional leptons, with opposite sing and
+ same flavor ($e^\pm e^\mp$ or $\mu^\pm\mu^\mp$). In the ``2P2F'' control region the two additional  leptons  are  both  
+required  to  fail the final identification and isolation criteria. This  sample  is  meant  to  be  used  to  estimate  
+the  contribution  in  the  signal region of events with only two genuine leptons, such as Z + jets and $t\bar{t}$. On the other
+ hand, the ``3P1F'' control sample contains events with only one of the two additional leptons failing identification and isolation 
+criteria and it is used to estimate the contribution in the signal region of events with three genuine leptons, such as 
+$WZ +$ jets. The number of reducible background events in the signal region is given by the following formula:
+\begin{equation}
+\label{eq:redBkg_methA}
+N^{Z+X}_{\mr{exp}} = \dfrac{f_{\mr{loose}}}{1-f_{\mr{loose}}} \left( N_{\mr{3P1F}} - N_{\mr{2P2F\rightarrow3P1F}} - N_{\mr{3P1F}}^{ZZ} \right) + \dfrac{f_{\mr{loose,1}}}{1-f_{\mr{loose,1}}}\dfrac{f_{\mr{loose,2}}}{1-f_{\mr{loose,2}}} N_{\mr{2P2F}},
+\end{equation}
+where:
+\begin{itemize}
+\item $N_{\mr{3P1F}}$ and $N_{\mr{2P2F}}$ are the number of events in the 3P1F and 2P2F control regions respectively
+\item $N_{\mr{2P2F\rightarrow3P1F}}$ is the contamination of 2P2F-like processes in the 3P1F control region, and is estimated by:
+  $$
+N_{\mr{2P2F\rightarrow3P1F}} = \left( \dfrac{f_{\mr{loose,1}}}{1-f_{\mr{loose,1}}} + \dfrac{f_{\mr{loose,2}}}{1-f_{\mr{loose,2}}} \right) N_{\mr{2P2F}}
+  $$
+\item $N_{\mr{3P1F}}^{ZZ}$ is the number of $ZZ$ events in the 3P1F control region and is taken from the simulation 
+\item $f_{\mr{loose}}$ and $f_{\mr{loose,1(2)}}$ are the fake rate of the failing lepton 
+  in the 3P1F sample and of the first (second) failing lepton in the 2P2F sample.
+\end{itemize}
+The ``fake rate'' is the lepton misidentification probability $f(\pt^{\ell},\eta^{\ell})$
+to extrapolate the background yields from the control region to the signal region. 
+This probability is defined as the fraction of non-signal leptons passing the lepton selection of the analysis.
+The fake rate is estimated in a sample composed by $Z_1 + 1\ell _{\mr{loose}}$ events, 
+where beside to the opposite sign, same flavour pair which forms the $Z_{1}$, 
+exactly one additional lepton is reconstructed fulfilling all the selection requirements, 
+but for the identification and the isolation cuts.\\
+The lepton misidentification probability ranges from 1\% to 15\% and has a mild dependence on the pseudorapidities for the 
+electrons.\\
+In Fig.~\ref{fig:red_bkg} the contribution of the reducible background is reported, estimated both from MC samples and by 
+using the ``fake-rate'' method. The lack of statistics makes the data-driven estimate necessary.\\
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Mass_Reducible_Bkg_MadGraphSet}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_Reducible_Bkg_MadGraphSet}%FIXME
+     \caption{Reducible background component in the signal region as a function of the invariant mass of the 4 lepton system (\cmsLeft) and the reconstructed number of jets produced in the event (\cmsRight). Points represent the data-driven estimate, the stacked histogram represents the Monte Carlo predictions, characterized by a very poor statistics.}
+    \label{fig:red_bkg}
+  \end{center}
+\end{figure}
+The reconstructed four-lepton invariant mass and the number of jets distributions are shown in Fig.~\ref{fig:sig_contr_Mad}.\\
+\begin{figure}[hbtp]
+  \begin{center}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Mass_Final_State_PowhegSet}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_Final_State_MadGraphSet}
+     \caption{Distribution of the reconstructed four-lepton mass (\cmsLeft): points represent the data, the stacked histogram represents the \texttt{Powheg+MCFM+Phantom} predictions for $ZZ$ signal. Distribution of the reconstructed number of jets produced in the event  (\cmsRight): points represent the data, the stacked histogram represents the \texttt{MadGraph+MCFM+Phantom} predictions for $ZZ$ signal. The estimate of irreducible and reducible backgrounds is also reported.}
+    \label{fig:sig_contr_Mad}
+  \end{center}
+\end{figure}
+=======
+>>>>>>> .r297631
+
+<<<<<<< .mine
+\section{Systematic uncertainties}
+%(The same as AN2013-134: check values!! FIXME)\\
+The systematic uncertainties for trigger efficiency (1.5\%) are evaluated from data. The uncertainties
+arising from lepton identification and isolation are 1–2\% for muons and electrons. The uncertainty in the LHC integrated
+luminosity of the data sample is 2.6\% [30-FIXME]. Theoretical uncertainties in the $ZZ \to \ell\ell\ell'\ell'$ 
+acceptance are evaluated using \texttt{MCFM} and by varying the renormalization and factorization scales, up and down, 
+by a factor of
+two with respect to the default values $\mu_R = \mu_F = m_Z$. The variations in the acceptance are 0.1\% (NLO
+$q\bar{q} \to ZZ$) and 0.4\% ($gg \to ZZ$), and can be neglected. Uncertainties related to the choice
+of the PDF and the strong coupling constant as are evaluated following the \texttt{PDF4LHC} [31 FIXME] prescription and 
+using \texttt{CT10},  \texttt{MSTW08}, and  \texttt{NNPDF} [32 FIXME] PDF sets and found to be 4\% (NLO $q\bar{q} \to ZZ$) and
+5\% ($gg \to ZZ$).\\
+The reducible background uncertainties in $Z + jets$, $WZ + jets$ and $t\bar{t}$ yields reflect the uncertainties in the measured 
+values of the misidentification rates and the limited statistics of the control regions in the data, and vary between 30\% 
+and 70\%. The irreducible background uncertainty is smaller and varies between 13\% and 26\%. Table~\ref{tab:syst} summarizes the sources  of systematic uncertainty and their values.
+\begin{table*}[htbH]
+\begin{center}
+\topcaption{Estimated systematic uncertainties on the signal yield used to compute the inclusive cross section measurement\label{tab:syst}}
+\begin{tabular}{lclc}
+\hline Systematic source & Uncertainty value\\
+\hline Trigger & 1.5\%  \\
+Lepton ID, ISO and Tracking & 1-5\%\\
+Luminosity & 2.6\%\\
+Reducible background (yield) & 33-66\%\\
+Irreducible background (yield) & 13-26\%\\
+ Acceptance for PDF & 5\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+=======
+%% --------------------------------------------------------- %%
+\section{Event Selection}
+\label{sec:selection}
+\input{selection}
+%% --------------------------------------------------------- %%
+>>>>>>> .r297631
+
+<<<<<<< .mine
+%The uncertainty in the unfolding procedure discussed in Section 7 arises from differences between
+%SHERPA and POWHEG for the unfolding factors (2–3%), from scale and PDF uncertainties
+%(4–5%), and from experimental uncertainties (4–5%).
+\section{The ZZ cross section measurement}
+The inclusive cross section is determined as
+$$\sigma_{ZZ} = \frac{N_{data}-N_{bkg}}{\mathcal{L}\cdot A \cdot \epsilon \cdot \mathcal{B}(Z\to \ell^+\ell^-)\cdot\mathcal{B}(Z\to \ell'^+\ell'^-)},$$
+where $N_{data}$ and $N_{bkg}$ are the total number of data and background events, $A$ is the geometrical acceptance, $\epsilon$
+is the signal efficiency, $\mathcal{L} = 19.7$ fb$^{-1}$ is the integrated luminosity and $\mathcal{B}(Z\to \ell^+\ell^-) = 3.363 \pm 0.004$
+($3.366\pm 0.007$) is the branching
+fraction of a $Z$ boson decaying to an electron (muon) pair [Ref FIXME].\\
+\\
+The product of acceptance and efficiency ($A\cdot\epsilon$) is evaluated from simulation and defined as the fraction of the 
+sum of $q\bar{q} \to ZZ$ and  $gg \to ZZ$ generated events, with $Z\to \ell^+\ell^-$, and the events accepted by the analysis
+ selection at reconstructed level.
+% (Cosa significa? FIXME) corrected for each individual lepton flavor in bins of pT and h using factors obtained with the “tag-and-probe” technique. 
+The requirements on $p_T$ and $\eta$ for the particles in the final state reduce the full possible phase space of the $ZZ \to 4
+\ell$ measurement by a factor within a range of 0.32-0.47 for the $4e$, $4\mu$ and $2e2\mu$ (depending on
+the final state) with respect to all events generated in the mass window $60 < m_{Z_1} ,m_{Z_2} < 120$ GeV.
+The $A\cdot\epsilon$ product estimated for each final state and for the different samples is listed in 
+Table~\ref{tab:Aeps_tot} and ~\ref{tab:Aeps_samples}.\\
+\begin{table*}[htbH]
+\begin{center}
+\topcaption{$A\cdot \epsilon$ for the three final states used in the $pp\to ZZ$ cross section measurement.
+The values reported are a product of the detector geometrical acceptance and
+the object reconstruction and event identification efficiency. \label{tab:Aeps_tot}}\\
+\begin{tabular}{cc}
+\hline Final State & $A\cdot\epsilon$\\
+\hline $4\mu$ & 47\%  \\
+$4e$ & 32\%\\
+$2e2\mu$ & 40\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+=======
+>>>>>>> .r297631
+
+<<<<<<< .mine
+\begin{table*}[htbH]
+\begin{center}
+\topcaption{Signal yield and efficiency for the signal samples.
+The $A\cdot\epsilon$ values reported are a product of the detector geometrical acceptance and
+the object reconstruction and event identification efficiency. \label{tab:Aeps_samples}}
+\begin{tabular}{lcccccc}
+\hline  \multicolumn{1}{c}{Process} & \multicolumn{3}{c}{Signal yield} & \multicolumn{3}{c}{$A\cdot\epsilon$}\\
+\hline  & $2e2\mu$ & $4\mu$& $4e$ & $2e2\mu$ & $4\mu$ &$4e$\\ 
+\hline $ZZ\to 4\ell$ (\texttt{MadGraph}) & 125.338& 51.67054 &51.67054 &0.39 & 0.32& 0.46  \\
+ $q\bar{q}\to ZZ\to 4\mu$  (\texttt{Powheg})& - & - & 69.577 & - & - & 0.46\\
+$q\bar{q}\to ZZ\to 4e$  (\texttt{Powheg}) & - & 48.012 & - & - & 0.32 & -\\
+$q\bar{q} \to ZZ\to 2e2\mu$  (\texttt{Powheg}) & 117.637 & - & - & 0.39 & - & -\\
+$gg\to ZZ\to 4\mu$  (\texttt{MCFM})& - & - & 5.03656466 & - & - & 0.72\\
+$gg\to ZZ\to 4e$  (\texttt{MCFM}) & - & 3.46719 & - & - & 0.49 & -\\
+$gg\to ZZ\to 2e2\mu$  (\texttt{MCFM})& 8.519 & - & - & 0.60 & - & -\\
+$ZZ\to 4\mu +2jets$  (\texttt{Phantom})& - & - & 0.632893 & - & - & 0.65\\
+$ZZ\to 4e +2jets$  (\texttt{Phantom})& - & 0.439676 & - & 0.45 &-\\
+$ZZ\to 2e2\mu +2jets$  (\texttt{Phantom})& 1.076 & - & - & 0.56 & - & -\\
+$ZZZ + jets$ (\texttt{MadGraph}) & 0.283865 & 0.120920 & 0.191878 & 0.42 & 0.35 & 0.54\\
+$WZZ + jets$ (\texttt{MadGraph}) & 0.328 & 0.13792 & 0.23904576 & 0.44 & 0.33 & 0.49\\
+$W + H$ (\texttt{MadGraph})& 0.015 & 0.0057715 & 0.0092137 & 0.40 & 0.35 & 0.53\\
+$Z + H$( \texttt{MadGraph}) & 0.200 & 0.08323 & 0.116719 & 0.42 & 0.34 & 0.48\\
+$t\bar{t}+H$ (\texttt{MadGraph})& 0.017 & 0.007473 & 0.009666 & 0.44 & 0.34 & 0.49\\
+\hline
+\textbf{Total MadGraph Set} & \textbf{135.775} &\textbf{55.933} &\textbf{80.640} & \textbf{0.40} & \textbf{0.32} & \textbf{0.47}\\
+\textbf{Total Powheg Set} & \textbf{128.25} &\textbf{52.33} &\textbf{75.89} & \textbf{0.40} & \textbf{0.32} & \textbf{0.47}\\
+ \hline
+\end{tabular}
+\end{center}
+\end{table*}
+ 
+The number of signal events used to evaluate the $ZZ$ cross section measurement is computed subtracting the irreducible and 
+reducible background estimates from the selected data samples. Values are reported in Table~\ref{tab:sig_yields}. 
+In Fig.~\ref{fig:sig_reco} the distributions of the reconstructed four-lepton mass and of the number of jets in the events
+are reported for both MC samples (\texttt{MadGraph} set) and data (FIXME).\\
+  
+\begin{figure}[hbtp]
+  \begin{center}
+   \includegraphics[width=\cmsFigWidth]{Figures/m4l_stack_reco_pow}    
+   \includegraphics[width=\cmsFigWidth]{Figures/nJets_stack_reco_mad}
+   \caption{Different contributions to the distribution of the reconstructed four-lepton mass (\cmsLeft) and of the reconstructed number of jets produced in the event  (\cmsRight). Points represent the data, the stacked histogram represents th predictions for $ZZ$ signal and background contributions (the \texttt{Powheg} set for $m_{4\ell}$ and the \texttt{MadGraph} set for $N\ jets$).}
+    \label{fig:sig_reco}
+  \end{center}
+\end{figure}
+=======
+%% --------------------------------------------------------- %%
+\section{Background Estimation}
+\label{sec:background}
+\input{background}
+%% --------------------------------------------------------- %%
+>>>>>>> .r297631
+
+
+%% --------------------------------------------------------- %%
+\section{Systematic Uncertainties}
+\label{sec:systunc}
+\input{systunc}
+%% --------------------------------------------------------- %%
+
+
+
+%% --------------------------------------------------------- %%
+\section{Results}
+\label{sec:results}
+\input{results}
+%% --------------------------------------------------------- %%
+
+<<<<<<< .mine
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Mass_ZZTo4m_st_01_Pow}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Mass_ZZTo4e_st_01_Pow}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Mass_ZZTo2e2m_st_01_Pow}     
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Response matrices for the $m_{ZZ}$ distribution, according to the final state: (top left) $4\mu$, (top right) $4e$, (bottom) $2e2\mu$. Matrices are obtained using the  \texttt{Powheg} set of samples.} 
+    \label{fig:Mass_matrices}
+  \end{center}
+\end{figure}
+=======
+>>>>>>> .r297631
+
+<<<<<<< .mine
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Jets_ZZTo4m_st_01}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Jets_ZZTo4e_st_01}
+    \includegraphics[width=\cmsFigWidth]{Figures/ResMat_qqggJJ_Jets_ZZTo2e2m_st_01}     
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Response matrices for the $N\ jets$ distribution, according to the final state: (top left) $4\mu$, (top right) $4e$, (bottom) $2e2\mu$. Matrices are obtained using the  \texttt{MadGraph} set of samples.} 
+    \label{fig:Mass_matrices}
+  \end{center}
+\end{figure}
+=======
+>>>>>>> .r297631
+
+%% --------------------------------------------------------- %%
+\section{Conclusions}
+\label{sec:conclusions}
+\input{conclusions}
+%% --------------------------------------------------------- %%
+
+<<<<<<< .mine
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Mass_ZZTo4m_Pow}
+    \includegraphics[width=\cmsFigWidth]{Figures/Mass_ZZTo4e_Pow}
+    \includegraphics[width=\cmsFigWidth]{Figures/Mass_ZZTo2e2m_Pow}     
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Unfolded (blue), generated (green) and reconstructed (red) $m_{ZZ}$ distributions, according to the final state: 
+(top left) $4\mu$, (top right) $4e$, (bottom) $2e2\mu$. The unfolded distributions are obtained using the SVD algorithm, with 
+$k_{reg} = 4$.} 
+    \label{fig:Mass_matrices}
+  \end{center}
+\end{figure}
+=======
+>>>>>>> .r297631
+
+<<<<<<< .mine
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_ZZTo4m}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_ZZTo4e}
+    \includegraphics[width=\cmsFigWidth]{Figures/Jets_ZZTo2e2m}     
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Unfolded (blue), generated (green) and reconstructed (red) $N\ jets$ distributions, according to the final state: (top left) $4\mu$, (top right) $4e$, (bottom) $2e2\mu$. The unfolded distributions are obtained using the D'Agostini algorithm, with 2 iterations.} 
+    \label{fig:Jets_matrices}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4mMass_Unfolded_Powheg}     
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4eMass_Unfolded_Powheg}     
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo2e2mMass_Unfolded_Powheg}       
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4lMass_Unfolded_Powheg}       
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Differential cross sections normalized to the theoretic cross section as a function of the  invariant mass of the 4 lepton system, according to the final state: (top left) $4\mu$, (top right) $4e$, (bottom left) $2e2\mu$, (bottom right) $4\ell$.}
+    \label{fig:diff_xs_mass}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4mJets_Unfolded_MadGraph}     
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4eJets_Unfolded_MadGraph}     
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo2e2mJets_Unfolded_MadGraph}       
+    \includegraphics[width=\cmsFigWidth]{Figures/DiffCrossSecZZTo4lJets_Unfolded_MadGraph}       
+ %   to generate (a) and (b) labels under the figures, you can use subfloat, but this is not recommended: takes too much space
+ %   \subfloat[]{\includegraphics[width=0.2\textwidth]{CMS-bw-logo}}\subfloat[]{\includegraphics[width=0.2\textwidth]{CMScol}}
+    \caption{Differential cross sections normalized to the theoretic cross section as a function of the number of jets in the event, according to the final state: (top left) $4\mu$, (top right) $4e$, (bottom left) $2e2\mu$, (bottom right) $4\ell$.}
+    \label{fig:diff_xs_jets}
+  \end{center}
+\end{figure}
+
+\\
+The systematic uncertainties in each bin are assessed from the variations of the nominal cross
+section, by repeating the full analysis for every systematic variation. The difference with respect
+to the nominal value is taken as the systematic uncertainty for each bin and each measured
+observable. By using this method, the possible correlations of the systematic uncertainties between
+bins are taken into account. Due to the normalisation, those systematic uncertainties that
+are correlated across all bins of the measurement, and therefore mainly affect the normalisation,
+cancel out at least partly. The errors also include the statistical error propagation through the
+unfolding method using the covariance matrix and the difference in the response matrix from
+\texttt{MadGraph} and \texttt{Powheg}.\\
+\\
+For the $m_{ZZ}$ observable, the unfolded distributions are obtained with the SVD algorithm and the regularization
+parameter $k_{reg}$ is chosen equal to 4. On the other hand, the $N \ jets$ distribution is unfolded using the D'Agostini method, 
+with 2 iterations. The differential cross section is presented in Fig. (FIXME). The measurement is compared to the predictions
+from the \texttt{MadGraph} and \texttt{Powheg} sets of samples, normalized to the MCFM (FIXME??) calculations
+up to approximate NNLO precision. The differential distributions normalized to the theoretic cross sections are presented 
+in Figs.~\ref{fig:diff_xs_mass} and \ref{fig:diff_xs_jets} for the $4\mu$, $4e$ and $2e2\mu$ decay channels and for their 
+combination.\\     
+
+\newpage
+\newpage
+=======
+>>>>>>> .r297631
+\appendix
+<<<<<<< .mine
+\section{Unfolding procedure for differential measurement of $ZZ$ cross section at 8 TeV}
+\subsection{Introduction}
+In high energy physics the measurement of physical observables is usually distorted by several effects, such as finite resolution and limited acceptance of the detector.
+The observed spectrum of physics quantities is thus considered as a ``noisy distorsion'' of the true one, i.e. the distribution one would observed under idealized 
+conditions (ideal detector, no backgrounds...). An important task of the experimental method is therefore to extract (FIXME) the true distribution from the 
+observed one, correcting for distortion and noise. This can be done by an unfolding procedure, that allows a direct comparison of the data obtained using different 
+detectors with each other and with theoretical predictions.\\
+\\
+The measurement discussed here is based on the full data sample collected in proton-proton collisiona during 2012 with the Compact Muon Solenoid Experiment (CMS) at the Large
+Hadron Collider (LHC), corresponding to the integrated luminosity of 19.7 fb$^{-1}$ at a center of mass energy of $\sqrt{s}$ = 8 TeV. The ZZ production cross section 
+is measured differentially as a function of the invariant mass of the four-lepton system, the number of jets produced in the 
+event, the invariant mass of the two most energetic jets $m_{jj}$ and the difference of pseudorapidity between them 
+$\Delta\eta_{jj}$. 
+The measurements are performed in the leptonic decay modes ZZ $\to \ell\ell\ell'\ell'$ channel ($\ell,\ell' = e, \mu$). \\
+\\
+The unfolding procedure is based on the so-called ``response matrix'', derived using simulated Monte Carlo, which is a mapping between the true value (generated) 
+of the observable and the reconstructed (measured) value, distorted by detector effects. Because of inevitable statistical uncertainties in the measured
+distribution, the exact solution  that one would obtain inverting the response matrix (if it exists) can lead to unacceptable results, wildly oscillating and useless. 
+In order to avoid this unstable behavior, a ``regularization condition'' can be imposed, requiring a smooth true distribution. The regularized unfolding methods 
+investigated here, as implemented in the RooUnfold package [FIXME], are the Singular Value Decomposition (SVD) method [FIXME] and the iterative Bayesian unfolding [FIXME].
+=======
+\section{Unfolding}
+\label{sec:unfolding}
+\input{unfolding}
+>>>>>>> .r297631
+
+
+
+% >> acknowledgements (for journal papers)
+% Please include the latest version from https://twiki.cern.ch/twiki/bin/viewauth/CMS/Internal/PubAcknow.
+%\section*{Acknowledgements}
+% ack-text
+
+%% **DO NOT REMOVE BIBLIOGRAPHY**
+\bibliography{auto_generated}   % will be created by the tdr script.
+
+%% examples of appendices. **DO NOT PUT \end{document} at the end
+%\clearpage
+
+<<<<<<< .mine
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests?Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests?Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests?Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:FullMad_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:FullMad_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state}
+    \label{fig:FullMad_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:HalfMad_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:HalfMad_4m}
+     \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:HalfMad_2e2m}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:FullPow_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:FullPow_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state}
+    \label{fig:FullPow_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:HalfPow_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:HalfPow_4m}
+     \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:HalfPow_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:MadMat_PowDist_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:MadMat_PowDist_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:MadMat_PowDist_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:PowMat_MadDist_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:PowMat_MadDist_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}
+   % \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests?Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:PowMat_MadDist_2e2m}
+  \end{center}
+\end{figure}
+=======
+%%% DO NOT ADD \end{document}!
+>>>>>>> .r297631
+
+<<<<<<< .mine
+
+\subsubsection{Choice of the unfolding algorithm}
+In order to choose the proper algorithm, results obtained using the SVD method and the so-called iterative ``Bayesian'' method are compared.\\
+\\
+The SVD method depends on the choice of the regularization parameter ($k_{reg}$), which is needed since matris inversion is sensitive to the statistical fluctuations 
+and is in the range $[1,N_{bin}]$. The optimal value of $k_{reg}$ is the one for which the errors associated to the unfolding procedure are small when compared to the 
+statistical ones. This parameter can be seen as a cut-off for quickly oscillating terms corresponding to data statistical fluctuations. (FIXME)\\ %da ampliare?? 
+By choosing a too small regularization parameter gets ride of these spurious fluctuations but the result tends to be biased by the MC truth. On the other hand, a too
+large regularization parameter will decrease the MC dependence but give too large importance too data fluctuation which will be interpreted as real shape.\\    
+\\
+The Bayes method using an iterative approach requires a choice for the maximum number of iteration to be done that, as discussed in [FIXME-d'ago], 
+should not lead to different results. In this analysis, the iteration procedure is stopped as soon as the new unfolded distribution is compatible
+with the one obtained from the previous step. This is quantified by computing the $\chi ^2/n.d.f.$ of the change in the unfolded distribution for every iteration step.
+The number of iterations in the Bayes unfolding procedure is set as the one when the next iteration is compatible with the current one by computing:
+\begin{itemize}
+\item $\sum_{i = 1}^{N_{bin}} (b_n^i - b_{n+1}^i)^2$, the sum of the deviations
+\item $\chi_{n}^2 = \sum_{i = 1}^{N_{bin}} \frac{(b_n^i - b_{n+1}^i)^2}{(db_n^i)^2}$
+ \item $\chi_{n+1}^2 = \sum_{i = 1}^{N_{bin}} \frac{(b_n^i - b_{n+1}^i)^2}{(db_{n+1}^i)^2}$
+\end{itemize}
+where $b^i_n$ is the content of the $ith$-bin of the histogram obtained using $n$ iterations and $b_{n+1}^i$ is the systematic uncertainty associated to  $b^i_n$.\\
+\\
+The unfolded $m_{4\ell}$-distributions are obtained using the SVD algorithm. In this case the regularization parameter is chosen to be $k_{reg} = 4$, the default value
+($N_{bin}/2$), since as shown in Figure~\ref{fig:Mass_biased} the distributions obtained using $k_{reg} = 2$ are clearly biased by the MC truth. On the other hand, the 
+ $N jets$ distributions are unfolded using the Bayesian algorithm, with two iterations. As shown in Figure~\ref{fig:Njets_biased}, this choice is not biased by the 
+MC truth distribution.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_SVD2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_SVD2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_SVD2.pdf}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_SVD4.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_SVD4.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_SVD4.pdf}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_Bayes2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_Bayes2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_Bayes2.pdf}
+     \caption{A flat distribution (in red) is unfolded using the SVD algorithm with $k_{reg} = 2$ (top) and $k_{reg} = 4$ (middle) and using the D'Agostini method with 4 iterations (bottom). Results are reported as a function of the invariant mass of the 4-lepton system  and for the $4e$ (left), $4\mu$ (center) and $2e2\mu$ (right) final state.}
+    \label{fig:Mass_biased}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_SVD2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_SVD2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_SVD2.pdf}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_SVD4.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_SVD4.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_SVD4.pdf}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_Bayes2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_Bayes2.pdf}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_Bayes2.pdf}
+     \caption{A flat distribution (in red) is unfolded using the SVD algorithm with $k_{reg} = 2$ (top) and $k_{reg} = 4$ (middle) and using the D'Agostini method with 4 iterations (bottom). Results are reported as a function of the number of jets and for the $4e$ (left), $4\mu$ (center) and $2e2\mu$ (right) final state.}
+    \label{fig:Jets_biased}
+  \end{center}
+\end{figure}
+
+
+%\subsection{Unfolding data distributions} FIXME: qui non c'e' granche' da dire...
+
+\subsection{Systematic Uncertainties}
+To evaluate the effects of the different sources of systematic uncertainty on the unfolded distributions, the whole unfolding procedure
+is repeated for every contribution. The following systematic uncertainties are considered for the result.
+\subsubsection{Unfolding (measurement and response matrix uncertainties)}
+Uncertainties due to the unfolded procedure are computed by the \texttt{ROOUNFOLD} toolkit and consist of two types, the 
+``measurement uncertainties'' and the ``response matrix uncertainties''. The former come from the propagation of the statistical 
+errors of the distribution that has to be unfolded through the unfolding matrix, in particular bin-to-bin correlations, and must be considered 
+as statistical uncertainties. The latter are uncertainties on the response matrix elements due to the limited MC statistics but can be neglected.% that in case of more than one iteration can not be neglected –iterations depend on the result of the previous step and thus they depend on the response matrix as well
+
+\subsubsection{$\sigma_{qq}$ and $\sigma_{gg}$ ratio}
+The response matrix is built adding the \texttt{MCFM} sample, which describes $gg\toZZ\to4\ell$ processes, to  the \texttt{MadGraph} (or \texttt{Powheg})
+one, that contains $qq/qg\toZZ\to4\ell$ events. The cross sections used to simulate these processes are estimated with (FIXME) and are affected
+by an uncertainties ($d\sigma_{qq\to ZZ}= \pm 4.44\%$ and $d\sigma_{gg\to ZZ}= \pm 25.36\%$). This leads to a systematic effect that is evaluated building 
+up new response matrices by varying the cross sections by $\pm d\sigma_{qq/gg}$. The combinations returning the largest discrepancy are those in which 
+the corrections of $\sigma_{qq}$ and $\sigma_{gg}$ have opposite sign, since in this case the difference of shapes is enhanced. The unfolded procedure 
+is repeated using these new matrices and the systematic uncertainty is evaluated taking the difference between the largest and the smallest results 
+for each bin. 
+\subsubsection{Choice of MC generator}
+This systematic uncertainty is computed comparing unfolded data distributions obtained applying the \texttt{Madgraph+MCFM} or the \texttt{Powheg+MCFM}
+response matrix and taking the difference between the two results.
+\subsubsection{Irreducible and reducible backgrounds}
+Uncertainties due to background estimate are evaluated by creating a new ``data-background'' distribution, in which the background is shifted up and down by
+its uncertainties, that is unfolded using standard matrices. This procedure is done for both reducible and irreducible contributions. In Figures~\ref{fig:mass_bkg_shift} 
+and~\ref{fig:jets_bkg_shift} the shifted distributions are reported, together with the nominal one, for the studied observables.
+\subsubsection{Data over MC ratio}
+
+\subsubsection{Jet energy resolutions}
+\subsubsection{Jet energy scale corrections}
+
+=======
+>>>>>>> .r297631

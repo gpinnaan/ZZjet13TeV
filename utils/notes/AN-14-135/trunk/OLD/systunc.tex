@@ -1,0 +1,34 @@
+%(The same as AN2013-134: check values!! FIXME)\\
+\label{sec:systunc}
+Systematic uncertainties for trigger efficiency (1.5\%) are evaluated from data~\cite{ZZXSPaper}. Uncertainties
+arising from lepton identification, isolation, tracking and impact parameter are 1-5\% for muons and electrons~\cite{ZZXSPaper}. The uncertainty in the LHC integrated
+luminosity of the data sample is 2.6\%~\cite{CMS-PAS-LUM-13-001}. Theoretical uncertainties in the $ZZ \to \ell\ell\ell'\ell'$ 
+acceptance are evaluated using \texttt{MCFM} and by varying the renormalization and factorization scales, up and down, 
+by a factor of two with respect to the default values $\mu_R = \mu_F = m_Z$. The variations in the acceptance are 0.1\% (NLO
+$q\bar{q} \to ZZ$) and 0.4\% ($gg \to ZZ$), and can be neglected. Uncertainties related to the choice
+of the PDF and the strong coupling constant are evaluated following the \texttt{PDF4LHC} ~\cite{PDF4LHCRec, PDF4LHCRep, CT10} prescription and 
+using \texttt{CT10},  \texttt{MSTW08}, and  \texttt{NNPDF}~\cite{NNPDF} PDF sets. They are found to be 1.2\% in the wider fiducial region and 0.8\% in the tighter fiducial region (fiducial regions are defined in the next section).
+%4\% (NLO $q\bar{q} \to ZZ$) and 5\% ($gg \to ZZ$)~\cite{ZZXSPaper}.
+
+The reducible background uncertainties in $Z$ + jets, $WZ$ + jets and $t\bar{t}$ yields reflect the uncertainties in the measured values of the misidentification rates and the limited statistics of the control regions in the data, and vary between 30\% and 70\% on the background yield, which corresponds to a $\sim$1\% of uncertainty on the cross-section measurement. The irreducible background uncertainty is smaller and varies between 13\% and 26\% on the yield (less than 1\% on the cross-section estimate). Table~\ref{tab:syst} summarizes the sources  of systematic uncertainty and their values.
+
+\begin{table*}[htbH]
+\begin{center}
+\topcaption{Estimated systematic uncertainties on the signal yield used to compute the inclusive cross section measurement\label{tab:syst}}
+\begin{tabular}{lclc}
+\hline Systematic source & Uncertainty value\\
+\hline Trigger & 1.5\%  \\
+Lepton ID, ISO and Tracking & 1-5\%\\
+Luminosity & 2.6\%\\
+Reducible background & $\sim$1\%\\
+Irreducible background & $<$1\%\\
+Acceptance for PDF & 0.8-1.2\%\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+% The uncertainty in the unfolding procedure discussed in Section 7 arises from differences between
+% SHERPA and POWHEG for the unfolding factors (2–3%), from scale and PDF uncertainties
+% (4–5%), and from experimental uncertainties (4–5%).
+

@@ -1,0 +1,211 @@
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}%
+\makeatletter
+\providecommand{\hrefCMSnoop }[0]{\@secondoftwo}%
+\makeatother
+\providecommand{\doi}{\texttt{doi:}\begingroup \urlstyle{tt}\Url}
+
+\bibitem{ZZXS7TeVPaper}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Measurement of the ZZ production cross
+  section and search for anomalous couplings in $2\ell2\ell'$ final states in
+  pp collisions at $\sqrt{s} = 7 TeV$'',} \textit{ Journal of High Energy
+  Physics} \textbf{ 2013} (2013), no.~1,
+  \href{http://dx.doi.org/10.1007/JHEP01(2013)063}{\doi{10.1007/JHEP01(2013)063}}.
+
+\bibitem{ZZXSPaper}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Measurement of the production cross
+  section and constraints on anomalous triple gauge couplings in four-lepton
+  final states at $\sqrt{s} = 8 TeV$'',} \textit{ Physics Letters B} \textbf{
+  740} (2015) 250--272,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.physletb.2014.11.059}{\doi{http://dx.doi.org/10.1016/j.physletb.2014.11.059}}.
+
+\bibitem{ZZTevatronCDF}
+\hrefCMSnoop {}{{CDF} Collaboration, ``Measurement of $ZZ$ Production in
+  Leptonic Final States at $\sqrt{s}$ of 1.96 TeV at CDF'',} \textit{ Phys.
+  Rev. Lett.} \textbf{ 108} (Mar, 2012) 101801,
+  \href{http://dx.doi.org/10.1103/PhysRevLett.108.101801}{\doi{10.1103/PhysRevLett.108.101801}}.
+
+\bibitem{ZZTevatronD0}
+\hrefCMSnoop {}{{D0} Collaboration, ``Measurement of the $ZZ$ production cross
+  section in $p\bar{p}$ collisions at $\sqrt{s} = 1.96 TeV$'',} \textit{ Phys.
+  Rev. D} \textbf{ 84} (July, 2011)
+  \href{http://dx.doi.org/10.1103/PhysRevD.84.011103}{\doi{10.1103/PhysRevD.84.011103}}.
+
+\bibitem{HiggsLegacyPaper}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Measurement of the properties of a Higgs
+  boson in the four-lepton final state'',} \textit{ Phys. Rev. D} \textbf{ 89}
+  (2014) 092007,
+\href{http://dx.doi.org/10.1103/PhysRevD.89.092007}{\doi{10.1103/PhysRevD.89.092007}}.
+%%CITATION = HEP-EX 9710004;%%.
+
+\bibitem{MadGraph5.1}
+\hrefCMSnoop {}{J.~A. et~al., ``MadGraph 5: going beyond'',} \textit{ Journal
+  of High Energy Physics} \textbf{ 2011} (June, 2011)
+  \href{http://dx.doi.org/10.1007/JHEP06(2011)128}{\doi{10.1007/JHEP06(2011)128}}.
+
+\bibitem{MCFM}
+\hrefCMSnoop {}{J.~M. Campbell and R.~Ellis, ``MCFM for the Tevatron and the
+  LHC'',} \textit{ Nuclear Physics B - Proceedings Supplements} \textbf{
+  205-206} (2010) 10 -- 15,
+  \href{http://dx.doi.org/10.1016/j.nuclphysbps.2010.08.011}{\doi{10.1016/j.nuclphysbps.2010.08.011}}.
+  Loops and Legs in Quantum Field TheoryProceedings of the 10th DESY Workshop
+  on Elementary Particle Theory.
+
+\bibitem{PowhegMethod}
+\hrefCMSnoop {}{S.~F. et~al., ``Matching NLO QCD computations with parton
+  shower simulations: the POWHEG method'',} \textit{ Journal of High Energy
+  Physics} \textbf{ 2007} (2007), no.~11, 070,
+  \href{http://dx.doi.org/10.1088/1126-6708/2007/11/070}{\doi{10.1088/1126-6708/2007/11/070}}.
+
+\bibitem{PowhegBox}
+\hrefCMSnoop {}{S.~A. et~al., ``A general framework for implementing NLO
+  calculations in shower Monte Carlo programs: the POWHEG BOX'',} \textit{
+  Journal of High Energy Physics} \textbf{ 2010} (2010), no.~6,
+  \href{http://dx.doi.org/10.1007/JHEP06(2010)043}{\doi{10.1007/JHEP06(2010)043}}.
+
+\bibitem{MGatNLO}
+J.~Alwall\hrefCMSnoop {}{ {et~al.}, ``{The automated computation of tree-level
+  and next-to-leading order differential cross sections, and their matching to
+  parton shower simulations}'',} \textit{ JHEP} \textbf{ 07} (2014) 079,
+  \href{http://dx.doi.org/10.1007/JHEP07(2014)079}{\doi{10.1007/JHEP07(2014)079}},
+  \href{http://www.arXiv.org/abs/1405.0301}{\texttt{arXiv:1405.0301}}.
+
+\bibitem{Phantom}
+\hrefCMSnoop {}{A.~B. et~al., ``PHANTOM: A Monte Carlo event generator for six
+  parton final states at high energy colliders'',} \textit{ Computer Physics
+  Communications} \textbf{ 180} (2009), no.~3, 401--417,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.cpc.2008.10.005}{\doi{http://dx.doi.org/10.1016/j.cpc.2008.10.005}}.
+
+\bibitem{Sjostrand:2006za}
+\hrefCMSnoop {}{T.~Sj{\"o}strand, S.~Mrenna, and P.~Skands, ``{PYTHIA} 6.4
+  physics and manual'',} \textit{ JHEP} \textbf{ 05} (2006) 026,
+  \href{http://dx.doi.org/10.1088/1126-6708/2006/05/026}{\doi{10.1088/1126-6708/2006/05/026}},
+\href{http://www.arXiv.org/abs/hep-ph/0603175}{\texttt{arXiv:hep-ph/0603175}}.
+%%CITATION = HEP-PH/0603175;%%.
+
+\bibitem{CTEQ6L}
+\hrefCMSnoop {}{L.~L. et~al., ``Uncertainty induced by QCD coupling in the CTEQ
+  global analysis of parton distributions'',} \textit{ Physical Review D}
+  \textbf{ 82} (2010)
+  \href{http://dx.doi.org/http://dx.doi.org/10.1103/PhysRevD.82.054021}{\doi{http://dx.doi.org/10.1103/PhysRevD.82.054021}}.
+
+\bibitem{CT10}
+\hrefCMSnoop {}{L.~L. et~al., ``New parton distributions for collider
+  physics'',} \textit{ Physical Review D} \textbf{ 82} (2010)
+  \href{http://dx.doi.org/http://dx.doi.org/10.1103/PhysRevD.82.074024}{\doi{http://dx.doi.org/10.1103/PhysRevD.82.074024}}.
+
+\bibitem{CMS-PAS-LUM-13-001}
+\href {http://cds.cern.ch/record/1598864}{{CMS} Collaboration, ``CMS Luminosity
+  Based on Pixel Cluster Counting - Summer 2013 Update'',} Technical Report
+  CMS-PAS-LUM-13-001, CERN, Geneva, 2013.
+
+\bibitem{CMS-PAS-PFT-09-001}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Particle-Flow Event Reconstruction in
+  CMS and Performance for Jets, Taus, and MET'',} technical report, CERN, 2009.
+
+\bibitem{MuonTrigger}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Double Muon Trigger efficiency in 2012
+  data'',} technical report, CERN, 2014.
+
+\bibitem{antiKT}
+\hrefCMSnoop {}{G.~S. M.~Cacciari and G.~Soyez, ``The anti-k t jet clustering
+  algorithm'',} \textit{ Journal of High Energy Physics} \textbf{ 2008} (2008),
+  no.~04, 063,
+  \href{http://dx.doi.org/10.1088/1126-6708/2008/04/063}{\doi{10.1088/1126-6708/2008/04/063}}.
+
+\bibitem{FASTJET}
+\hrefCMSnoop {}{G.~S. M.~Cacciari and G.~Soyez, ``FastJet user manual'',}
+  \textit{ The European Physical Journal C} \textbf{ 72} (2012), no.~3,
+  \href{http://dx.doi.org/10.1140/epjc/s10052-012-1896-2}{\doi{10.1140/epjc/s10052-012-1896-2}}.
+
+\bibitem{JetID}
+\href {https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetID}{J.-M. Group, ``Jet
+  Identification'',}.
+
+\bibitem{JECandJER}
+\href {http://stacks.iop.org/1748-0221/6/i=11/a=P11002}{T.~C. collaboration,
+  ``Determination of jet energy calibration and transverse momentum resolution
+  in CMS'',} \textit{ Journal of Instrumentation} \textbf{ 6} (2011), no.~11,
+  P11002.
+
+\bibitem{JETRES}
+\href {https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetResolution}{J.-M. Group,
+  ``Jet Energy Resolution'',}.
+
+\bibitem{PDF4LHCRec}
+\hrefCMSnoop {}{M.~B. et~al., ``The PDF4LHC Working Group Interim
+  Recommendations'',}
+  \href{http://www.arXiv.org/abs/1101.0538}{\texttt{arXiv:1101.0538}}.
+
+\bibitem{PDF4LHCRep}
+\hrefCMSnoop {}{S.~A. et~al., ``The PDF4LHC Working Group Interim Report'',}
+  \href{http://www.arXiv.org/abs/1101.0536}{\texttt{arXiv:1101.0536}}.
+
+\bibitem{NNPDF}
+\hrefCMSnoop {}{R.~D. B.~K. al., ``Impact of heavy quark masses on parton
+  distributions and LHC phenomenology'',} \textit{ Nuclear Physics B} \textbf{
+  849} (2011), no.~2, 296 -- 363,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.nuclphysb.2011.03.021}{\doi{http://dx.doi.org/10.1016/j.nuclphysb.2011.03.021}}.
+
+\bibitem{PDG}
+\href {http://stacks.iop.org/1674-1137/38/i=9/a=090001}{K.~Olive and P.~D.
+  Group, ``Review of Particle Physics'',} \textit{ Chinese Physics C} \textbf{
+  38} (2014), no.~9, 090001.
+
+\bibitem{RooUnfold}
+\hrefCMSnoop {}{T.~Adye, ``Unfolding algorithms and tests using RooUnfold'',}
+  \href{http://www.arXiv.org/abs/1105.1160v1}{\texttt{arXiv:1105.1160v1}}.
+
+\bibitem{SVD}
+\hrefCMSnoop {}{A.~H{\"o}cker and V.~Kartvelishvili, ``SVD approach to data
+  unfolding'',} \textit{ Nuclear Instruments and Methods in Physics Research
+  Section A: Accelerators, Spectrometers, Detectors and Associated Equipment}
+  \textbf{ 372} (1996), no.~3, 469--481,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/0168-9002(95)01478-0}{\doi{http://dx.doi.org/10.1016/0168-9002(95)01478-0}}.
+
+\bibitem{DAgostini}
+\hrefCMSnoop {}{G.~D'Agostini, ``A multidimensional unfolding method based on
+  Bayes' theorem'',} \textit{ Nuclear Instruments and Methods in Physics
+  Research Section A: Accelerators, Spectrometers, Detectors and Associated
+  Equipment} \textbf{ 362} (1995), no.~2-3, 487--498,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/0168-9002(95)00274-X}{\doi{http://dx.doi.org/10.1016/0168-9002(95)00274-X}}.
+
+\bibitem{SMP-14-016}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Measurement of the $W^{+}W_{-}$ cross
+  section in pp collisions at $\sqrt{s} = 8$ TeV and limits on anomalous gauge
+  couplings'',} technical report, CERN, 2015.
+\newblock
+  \href{http://www.arXiv.org/abs/1507.03268}{\texttt{arXiv:1507.03268}}.
+
+\bibitem{AtlasHiggs}
+\hrefCMSnoop {}{{Atlas} Collaboration, ``Observation of a new particle in the
+  search for the Standard Model Higgs boson with the ATLAS detector at the
+  LHC'',} \textit{ Physics Letters B} \textbf{ 716} (2012), no.~1, 1 -- 29,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.physletb.2012.08.020}{\doi{http://dx.doi.org/10.1016/j.physletb.2012.08.020}}.
+
+\bibitem{CMSHiggs}
+\hrefCMSnoop {}{{CMS} Collaboration, ``Observation of a new boson at a mass of
+  125 GeV with the CMS experiment at the LHC'',} \textit{ Physics Letters B}
+  \textbf{ 716} (2012), no.~1, 30 -- 61,
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.physletb.2012.08.021}{\doi{http://dx.doi.org/10.1016/j.physletb.2012.08.021}}.
+
+\bibitem{grazzini}
+\hrefCMSnoop {}{M.~Grazzini, S.~Kallweit, and D.~Rathlev, ``{ZZ production at
+  the LHC: fiducial cross sections and distributions in NNLO QCD}'',} \textit{
+  Phys. Lett.} \textbf{ B750} (2015) 407--410,
+\href{http://dx.doi.org/10.1016/j.physletb.2015.09.055}{\doi{10.1016/j.physletb.2015.09.055}}.
+%%CITATION = ARXIV:1507.06257;%%.
+
+\bibitem{CMS_AN_13-165}
+\href
+  {http://cms.cern.ch/iCMS/jsp/db_notes/noteInfo.jsp?cmsnoteid=CMS\%20AN-2013/165}{G.~D.~R.
+  V.~Candelise, F.~Cossutti and C.~L. Licata, ``Associated production of Z
+  boson and b-jets in pp collision at 8 TeV'',} CMS Note 2013/165, CERN, 2014.
+
+\bibitem{CMS_PAS_13-007}
+\href
+  {https://cms-physics.web.cern.ch/cms-physics/public/SMP-13-007-pas.pdf}{T.~C.
+  Collaboration, ``Measurement of the differential production cross section of
+  Z bosons in association with jets in pp collisions at $\sqrt{s} = 8$ TeV'',}
+  CMS PAS 2013/007, CERN, 2014.
+
+\end{thebibliography}\endgroup

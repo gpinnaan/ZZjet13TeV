@@ -1,0 +1,651 @@
+In high energy physics the measurement of physical observables is usually distorted by several effects, such as finite resolution and limited acceptance of the detector.
+The observed spectrum of physics quantities is thus considered as a ``noisy distorsion'' of the true one, i.e. the distribution one would observed under idealized 
+conditions (ideal detector, no backgrounds...). An important task of the experimental method is therefore to extract the true distribution from the 
+observed one, correcting for distortion and noise. This can be done by an unfolding procedure, that allows a direct comparison of the data obtained using different 
+detectors with each other and with theoretical predictions.\\
+\\
+The measurement discussed here is based on the full data sample collected in proton-proton collisions during 2012 with the Compact Muon Solenoid Experiment (CMS) at the Large Hadron Collider (LHC), corresponding to the integrated luminosity of 19.7 fb$^{-1}$ at a center of mass energy of $\sqrt{s}$ = 8 TeV. The ZZ production cross section 
+is measured differentially as a function of the invariant mass of the four-lepton system, the number of jets produced in the 
+event, the invariant mass of the two most energetic jets ($m_{jj}$) and the difference of pseudorapidity between them 
+($\Delta\eta_{jj}$). 
+The measurements are performed in the leptonic decay modes ZZ $\to \ell\ell\ell'\ell'$ channel ($\ell,\ell' = e, \mu$). \\
+\\
+The unfolding procedure is based on the so-called ``response matrix'', derived using simulated Monte Carlo, which is a mapping between the true value (generated) 
+of the observable and the reconstructed (measured) value, distorted by detector effects. Because of inevitable statistical uncertainties in the measured
+distribution, the exact solution  that one would obtain inverting the response matrix (if it exists) can lead to unacceptable results, wildly oscillating and useless. 
+In order to avoid this unstable behavior, a ``regularization condition'' can be imposed, requiring a smooth true distribution. The regularized unfolding methods 
+investigated here, as implemented in the RooUnfold package~\cite{RooUnfold}, are the Singular Value Decomposition (SVD) method~\cite{SVD} and the iterative Bayesian unfolding~\cite{DAgostini}.
+
+\subsection{Unfolding procedure}
+%da WW-SVD
+The distribution of a measured observable be stored in a vector $N_{rec}$ of dimension $n$, where the $ith$ coordinate of the vector contains the number of entries
+in the corresponding bin of the histogram~\cite{SVD, SMP-14-016}. The measurement is affected by the finite experimental resolution and/or the limited acceptance of the detector, so that each event from the true distribution may find itself in a range of (not necessarily) adjacent bins, or nowhere at all.\\
+\\
+We generate the distribution $N_{gen}$ of dimension $m$ according to some idea of the physical process under study, and perform the detector simulation.
+At this stage, every event in a measured bin $i$ can be directly matched to the generated one $j$. A well defined system of linear equations is thus defined, describing the relations between the simulated true and measured distributions:
+$$\sum_{j}A_{ij}N^{j}_{gen}=N^{i}_{rec}.$$
+The $A_{ij}$ matrix is the response matrix that maps the binned generated distribution onto the measured one: each element $(i,j)$ is indeed related to the 
+probability that the observable generated in the $jth$ bin would be measured in the $ith$ bin. The unfolding procedure applies the response matrix to the 
+measured data distribution (in which background is subtracted), taking into account the measurement uncertainties due to statistical fluctuations 
+in the finite measured sample through the covariance matrix:
+$$\sum_{j}A_{ij}N^{j}_{gen}=N^{i}_{sig} := N_{data}^{i}-N^{i}_{bkg}.$$
+The linear system of equations can be solved using the exact inverse of the response matrix on measured histogram and obtaining a data distribution 
+``at particle level''. However a direct inversion of the matrix usually leads to completely unacceptable wildly oscillating results. In order to overcome this 
+problem, different regularized algorithms can be used, such as the Singular Value Decomposition (SVD) and the iterative ``Baysian'' method, well described 
+in~\cite{SVD} and~\cite{DAgostini}.\\
+\\
+%from WW
+The response matrices used in the analysis are obtained from Monte Carlo samples that contain signal-only events with pile-up 
+reweighting, lepton and trigger
+efficiency applied. Two sets of samples are employed, the \texttt{Madgraph+MCFM+Phantom} (as reference) and \texttt{Powheg+MCFM} (as check) sets
+(for the $m_{ZZ}$ distribution the role of the two sets of samples is switched). Leptons are generated requiring  $m_{\ell^{+}\ell^{-}} > 4$ GeV in all sampls but \textt{MadGraph}, in which  $m_{\ell^{+}\ell^{-}} > 12$ GeV,  
+and reconstructed  following the same steps of~\cite{HiggsLegacyPaper,ZZXSPaper}. Jets are generated with $p_{T} > 10$ GeV and reconstructed following
+the criteria recommended by Jet-MET group~\cite{JetID}. Both genereted events not measured because of detection or selection inefficiency and reconstructed events not generated as 
+signal are also taken into account in the unfolding procedure.\\
+\\
+In the following, first the choice of the binning of the distributions is discussed, in order to control migration from one bin to others. Then the performance 
+of the unfolding is validated through studies on Monte Carlo samples and applied on data distribution. Finally the difference sources of systematic 
+errors are investigated and  uncertainties are evaluated.
+
+\subsection{Bin-to-bin migration}
+Because of the finite experimental resolution, events that are actually produced (generated) in one bin might be measured (reconstructed) in another bin, leading to migrations of events across bin boundaries. This bin-to-bin migration is studied in term of
+purity and stability in each bin. As in~\cite{SMP-14-016}, the purity $p_i$ is defined as the number of events that are
+generated and correctly reconstructed in a given bin $i$ divided by the number of events that are reconstructed in bin $i$, 
+but generated anywhere. On the other hand, the stability is defined as the number of events that are
+generated and correctly reconstructed in a given bin $i$ divided by the number of events that are generated in bin $i$, but 
+reconstructed anywhere:
+$$p_i=\frac{N^i_{gen\&reco}}{N_{reco}}; \ \ s_i=\frac{N^i_{gen\&reco}}{N_{gen}},$$
+
+where $reco$ refers to reconstructed events fulfilling the full selection requirements described above and $gen$ refers to 
+generated events satisfying the phase space requirements. 
+Without migration effects, purity and stability would be equal to one. The purity
+(stability) is sensitive to migrations into (out of) the bin. In order to keep bin-to-bin migrations
+acceptably small, the bin widths for each observable are optimized such that for each bin purity
+and stability are greater than about 70\%.  Figures~\ref{fig:ps_4e},~\ref{fig:ps_4m} and ~\ref{fig:ps_2e2m} show the purity and stability for the final binning definition. The binning selection for each observable is define as:\\
+\begin{itemize}
+\item $m_{4\ell}$: $\{100,200,250,300,350,400,500,600,800\}$
+\item $N\ jets$: $\{0,1,2, >2\}$
+\item $m_{jj}$: $\{0,200,800\}$ 
+\item $\Delta\eta_{jj}$: $\{0,2.4,4.7\}$
+\end{itemize}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4e_Mass}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4e_Jets}
+   \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4e_Mjj}
+   \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4e_Deta}
+     \caption{Purity and stability as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:ps_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4m_Mass}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4m_Jets}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4m_Mjj}
+   \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_4m_Deta}
+     \caption{Purity and stability as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:ps_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_2e2m_Mass}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_2e2m_Jets}
+   \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_2e2m_Mjj}
+   \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/BinMigration/PurityStability_2e2m_Deta}
+     \caption{Purity and stability as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:ps_2e2m}
+  \end{center}
+\end{figure}
+
+\subsection{Unfolding validation test on Monte Carlo}
+Before looking at the data, it is recommended to test the unfolding procedure on MC events alone. 
+As first step the consistency of the whole process is checked using the full \texttt{MadGraph} (or \texttt{Powheg}) set of samples,
+both for the distribution to be unfolded and the response matrix. If everything is
+correctly implemented the unfolded distribution and the generated one should be exactly the
+same, as it is shown in figures~\ref{fig:FullMad_4e}, ~\ref{fig:FullMad_4m} and ~\ref{fig:FullMad_2e2m} (or in figures~\ref{fig:FullPow_4e}, ~\ref{fig:FullPow_4m} and ~\ref{fig:FullPow_2e2m} for \texttt{Powheg}) for the four considered distributions, in the three different final 
+states. In each plot the ratio of unfolded over generated
+distribution is shown and, as expected, it is unity.\\
+Moreover, in order to get meaningful results, the distribution that has to be unfolded must be statistically independent 
+from the 2-dimensional response histogram. The \texttt{MadGraph}(\texttt{Powheg}) set is thus split into two samples: one of them
+is used to fill the response matrix, while the other one is used to build the distribution to unfold.
+Figures~\ref{fig:HalfMad_4e}, ~\ref{fig:HalfMad_4m} and ~\ref{fig:HalfMad_2e2m}(~\ref{fig:HalfPow_4e}, ~\ref{fig:HalfPow_4m} and ~\ref{fig:HalfPow_2e2m}) show the result of this closure test.\\
+Finally, in order to compare the effect of employing different signal samples and to be sure the procedure is
+independent of the choice of a particular MC, the response matrix from the \texttt{MadGraph} set is applied on the distribution 
+obtained using the \texttt{Powheg} set and vice versa. Results are reported in figures~\ref{fig:MadMat_PowDist_4e} -~\ref{fig:MadMat_PowDist_4m} 
+-~\ref{fig:MadMat_PowDist_2e2m} and~\ref{fig:PowMat_MadDist_4e} -~\ref{fig:PowMat_MadDist_4m} -~\ref{fig:PowMat_MadDist_2e2mbis}.\\
+Closure tests show that the unfolding procedure doesn't introduce any additional bias and demonstrate its effectiveness. 
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:FullMad_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:FullMad_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_MadDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state}
+    \label{fig:FullMad_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:FullPow_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:FullPow_4m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the full set. Results are reported as a function of 
+ the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state}
+    \label{fig:FullPow_2e2m}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:HalfMad_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:HalfMad_4m}
+     \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_MadDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_MadDistr_HalfSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{MadGraph} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:HalfMad_2e2m}
+  \end{center}
+\end{figure}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:HalfPow_4e}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:HalfPow_4m}
+     \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_PowDistr_HalfSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_PowDistr_HalfSample}
+     \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Powheg} distribution, using the two different halfs of the total sample. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:HalfPow_2e2m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_MadMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:MadMat_PowDist_4e}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_MadMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_MadMatrix_PowDistr_FullSample}
+     \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_MadMatrix_PowDistr_FullSample}
+     \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:MadMat_PowDist_4m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_MadMatrix_PowDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_MadMatrix_PowDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_MadMatrix_PowDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_MadMatrix_PowDistr_FullSample}
+    \caption{Unfolding test: \texttt{MadGraph} matrix applied on \texttt{Powheg} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:MadMat_PowDist_2e2m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4e_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4e_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_MadDistr_FullSample}
+    \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of the
+      two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4e$ final state.}
+    \label{fig:PowMat_MadDist_4e}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo4m_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo4m_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4m_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4m_PowMatrix_MadDistr_FullSample}
+    \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass o
+the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $4\mu$ final state.}
+    \label{fig:PowMat_MadDist_4m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mass_ZZTo2e2m_PowMatrix_MadDistr_FullSample}     
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Jets_ZZTo2e2m_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Mjj_ZZTo4e_PowMatrix_MadDistr_FullSample}
+    \includegraphics[width=\cmsFigWidth]{Figures/Unfolding/MCTests/Deta_ZZTo4e_PowMatrix_MadDistr_FullSample}
+    \caption{Unfolding test: \texttt{Powheg} matrix applied on \texttt{Matrix} distribution, using the two full samples. 
+     Results are reported as a function of the invariant mass of the 4-lepton system (top left), the number of jets in the event (top right), the invariant mass of
+ the two most energetic jets (bottom left) and the $\Delta\eta$ between them (bottom right) for the $2e2\mu$ final state.}
+    \label{fig:PowMat_MadDist_2e2mbis}
+  \end{center}
+\end{figure}
+
+
+\subsubsection{Choice of the unfolding algorithm}
+In order to choose the proper algorithm, results obtained using the SVD method and the so-called iterative ``Bayesian'' method are compared.\\
+\\
+The SVD method depends on the choice of the regularization parameter ($k_{reg}$), which is needed since matrix inversion is sensitive to the statistical fluctuations 
+and is in the range $[1,N_{bin}]$. The optimal value of $k_{reg}$ is the one for which the errors associated to the unfolding procedure are small when compared to the 
+statistical ones. This parameter can be seen as a cut-off for quickly oscillating terms corresponding to data statistical fluctuations,
+ as described in detail in~\cite{SVD}.\\  %da ampliare?? 
+By choosing a too small regularization parameter gets ride of these spurious fluctuations but the result tends to be biased by the MC truth. On the other hand, a too
+large regularization parameter will decrease the MC dependence but give too large importance too data fluctuation which will be interpreted as real shape.\\    
+\\
+The Bayes method using an iterative approach requires a choice for the maximum number of iterations to be done that, as discussed in~\cite{DAgostini}, 
+should not lead to different results. In this analysis, the iteration procedure is stopped as soon as the new unfolded distribution is compatible
+with the one obtained from the previous step. This is quantified by computing the $\chi ^2/n.d.f.$ of the change in the unfolded distribution for every iteration step.
+The number of iterations in the Bayes unfolding procedure is set as the one when the next iteration is compatible with the current one by computing:
+\begin{itemize}
+\item $\sum_{i = 1}^{N_{bin}} (b_n^i - b_{n+1}^i)^2$, the sum of the deviations
+\item $\chi_{n}^2 = \sum_{i = 1}^{N_{bin}} \frac{(b_n^i - b_{n+1}^i)^2}{(db_n^i)^2}$
+ \item $\chi_{n+1}^2 = \sum_{i = 1}^{N_{bin}} \frac{(b_n^i - b_{n+1}^i)^2}{(db_{n+1}^i)^2}$
+\end{itemize}
+where $b^i_n$ is the content of the $ith$-bin of the histogram obtained using $n$ iterations and $b_{n+1}^i$ is the systematic uncertainty associated to  $b^i_n$.\\
+\\
+The unfolded $m_{ZZ}$-distributions are obtained using the SVD algorithm. In this case the regularization parameter is chosen to be $k_{reg} = 4$, the default value
+($N_{bin}/2$), since as shown in Figure~\ref{fig:Mass_biased} the distributions obtained using $k_{reg} = 2$ are clearly biased by the MC truth. On the other hand, the jet-related variables ($N jets$, $m_{jj}$ and $\Delta\eta_{jj}$) distributions are unfolded using the Bayesian algorithm, with two iterations. As shown 
+in Figure~\ref{fig:Jets_biased}, this choice is not biased by the MC truth distribution.\\
+
+%%\begin{figure}[hbtp]
+%%  \begin{center}
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_SVD2}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_SVD2}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_SVD2}
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_SVD4}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_SVD4}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_SVD4}
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Mass_Bayes2}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Mass_Bayes2}     
+%%    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Mass_Bayes2}
+%%     \caption{A flat distribution (in red) is unfolded using the SVD algorithm with $k_{reg} = 2$ (top) and $k_{reg} = 4$ (middle) and using the D'Agostini method with 4 iterations (bottom). Results are reported as a function of the invariant mass of the 4-lepton system  and for the $4e$ (left), $4\mu$ (center) and $2e2\mu$ (right) final state.}
+%%    \label{fig:Mass_biased}
+%%  \end{center}
+%% \end{figure}
+
+%% \begin{figure}[hbtp]
+%%   \begin{center}
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_SVD2}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_SVD2}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_SVD2}
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_SVD4}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_SVD4}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_SVD4}
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4e_Jets_Bayes2}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo4m_Jets_Bayes2}     
+%%     \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/MCTests/Biased_Distributions/ZZTo2e2m_Jets_Bayes2}
+%%      \caption{A flat distribution (in red) is unfolded using the SVD algorithm with $k_{reg} = 2$ (top) and $k_{reg} = 4$ (middle) and using the D'Agostini method with 4 iterations (bottom). Results are reported as a function of the number of jets and for the $4e$ (left), $4\mu$ (center) and $2e2\mu$ (right) final state.}
+%%     \label{fig:Jets_biased}
+%%   \end{center}
+%% \end{figure}
+
+
+%\subsection{Unfolding data distributions} FIXME: qui non c'e' granche' da dire...
+
+\subsection{Systematic Uncertainties}
+To evaluate the effects of the different sources of systematic uncertainty on the unfolded distributions, the whole unfolding procedure
+is repeated for every contribution. The following systematic uncertainties are considered for the result and their contributions
+are individually reported in Figures from~\ref{fig:Mass_syst_4e} to~\ref{fig:Detasyst2e2m}, for all variables and final states.   
+%In Figures~\ref{fig:mass_bkg_shift} and~\ref{fig:jets_bkg_shift} the shifted distributions are reported, together with the nominal one, for the studied observables.
+\subsubsection{Unfolding (measurement and response matrix uncertainties)}
+Uncertainties due to the unfolded procedure are computed by the \texttt{RooUnfold} toolkit and consist of two types, the 
+``measurement uncertainties'' and the ``response matrix uncertainties''. The former come from the propagation of the statistical 
+errors of the distribution that has to be unfolded through the unfolding matrix, in particular bin-to-bin correlations, and must be considered 
+as statistical uncertainties. The latter are uncertainties on the response matrix elements due to the limited MC statistics but can be neglected.% that in case of more than one iteration can not be neglected –iterations depend on the result of the previous step and thus they depend on the response matrix as well
+
+\subsubsection{$\sigma_{qq}$ and $\sigma_{gg}$ ratio}
+The response matrix is built adding the \texttt{MCFM} sample, which describes $gg\to ZZ\to 4\ell$ processes, to  the \texttt{MadGraph} (or \texttt{Powheg})
+one, that contains $qq/qg\to ZZ \to 4\ell$ events. The cross sections used to simulate these processes are estimated with \fixme{\texttt{MCFM}} and are affected
+by an uncertainties ($d\sigma_{qq\to ZZ}= \pm 4.44\%$ and $d\sigma_{gg\to ZZ}= \pm 25.36\%$). This leads to a systematic effect that is evaluated building 
+up new response matrices by varying the cross sections by $\pm d\sigma_{qq/gg}$. The combinations returning the largest discrepancy are those in which 
+the corrections of $\sigma_{qq}$ and $\sigma_{gg}$ have opposite sign, since in this case the difference of shapes is enhanced. The unfolded procedure 
+is repeated using these new matrices and the systematic uncertainty is evaluated taking the difference between the largest and the smallest results 
+for each bin. 
+\subsubsection{Choice of MC generator}
+This systematic uncertainty is computed comparing unfolded data distributions obtained applying the \texttt{Madgraph+MCFM+Phantom} or the \texttt{Powheg+MCFM+Phantom}
+response matrix and taking the difference between the two results.
+\subsubsection{Irreducible and reducible backgrounds}
+Uncertainties due to background estimate are evaluated by creating a new ``data-background'' distribution, in which the background is shifted up and down by
+its uncertainties, that is unfolded using standard matrices. This procedure is done for both reducible and irreducible contributions. 
+
+\subsubsection{Data over MC ratio}
+This systematic uncertainty is evaluated building up a new response matrix whose elements are weighted for the ratio between the unfolded data and the generator level 
+information. The difference between the unfolded results obtained by the application of this weighted response matrix and the standard one is considered as a 
+systematic error~\cite{CMS_AN_13-165}.
+\subsubsection{Jet energy resolutions (JER)}
+This correction has been estimated for data and MC in~\cite{JECandJER}. MC slightly overestimates the resolution compared to data. The effect is propagated accordingly by 
+smearing the samples used to build the response matrices. This uncertainty is found to range from 0.2\% up to $\sim$30\% in the last bins, where the statistics is 
+very low. 
+\subsubsection{Jet energy scale corrections (JES)}
+This uncertainty is calculated by rescaling the jet $p_T$ spectrum up and down in data~\cite{CMS_PAS_13-007} and, separately, in MC reconstructed distributions.
+ The uncertainties are $p_T$ and $\eta$ dependent and, for the phase space of interest, are estimated to be from $\sim$1 up to $\sim$30\% in the last bins, where the statistics is very low.
+
+\begin{figure}[hbtp]
+ \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_UnfDataOverGenMC}     
+    %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_JER}
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_JES_ModData}     
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mass_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $4e$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio. The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Mass_syst_4e}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_UnfDataOverGenMC}     
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_JER}
+    %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_JES_ModData}     
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mass_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $4\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Mass_syst_4m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_UnfDataOverGenMC}     
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_JER}
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_JES_ModData}     
+  % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mass_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $2e2\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Mass_syst_2e2m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Jets_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $4e$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Jets_syst_4e}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Jets_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $4\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Jets_syst_4m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_RedBkg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Jets_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of the number of jets, for the     
+    $2e2\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Jets_syst_2e2m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_RedBkg}     
+    %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Mjj_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $m_{jj}$, for the     
+    $4e$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+    \label{fig:Mjj_syst_4e}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_RedBkg}     
+    %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Mjj_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $m_{jj}$, for the     
+    $4\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and the MC truth.}
+    \label{fig:Mjj_syst_4m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_qqgg}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_MCgen}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_IrrBkg}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_RedBkg}     
+   % \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_UnfDataOverGenMC}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_JER}
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_JES_ModData}     
+    \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Mjj_JES_ModMat}
+    \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $m_{jj}$, for the     
+    $2e2\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and the MC truth.}
+   \label{fig:Mjj_syst_2e2m}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+ \begin{center}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_qqgg}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_MCgen}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_IrrBkg}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_RedBkg}     
+   %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_UnfDataOverGenMC}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_JER}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_JES_ModData}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4e_Deta_JES_ModMat}
+   \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $\Delta\eta_{jj}$, for the     
+   $4e$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+   \label{fig:Deta_syst_4e}
+ \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+ \begin{center}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_qqgg}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_MCgen}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_IrrBkg}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_RedBkg}     
+   %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_UnfDataOverGenMC}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_JER}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_JES_ModData}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo4m_Deta_JES_ModMat}
+   \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $\Delta\eta_{jj}$, for the     
+   $4\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+   \label{fig:Deta_syst_4m}
+ \end{center}
+\end{figure}
+
+\begin{figure}[hbtp]
+ \begin{center}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_qqgg}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_MCgen}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_IrrBkg}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_RedBkg}     
+   %\includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_UnfDataOverGenMC}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_JER}
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_JES_ModData}     
+   \includegraphics[width=0.8\cmsFigWidth]{Figures/Unfolding/Systematics/ZZTo2e2m_Deta_JES_ModMat}
+   \caption{Effects of the different sources of systematic uncertainty on the unfolded distributions of $\Delta\eta_{jj}$, for the     
+   $2e2\mu$ final state. From left to right, from top to bottom: $\sigma_{qq}$ and $\sigma_{gg}$ ratio, MC generator, irreducible background,
+reducible background, data/MC ratio, JER, JES modifying data distribution, JES modifying the response matrix The shifted distributions due to the systematic effects are reported, together with the nominal one and
+the MC truth.}
+   \label{fig:Detasyst2e2m}
+ \end{center}
+\end{figure}

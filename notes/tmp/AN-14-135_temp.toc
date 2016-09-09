@@ -1,0 +1,24 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Dataset and Monte Carlo Samples}{2}{section.2}
+\contentsline {section}{\numberline {3}Event Selection}{4}{section.3}
+\contentsline {section}{\numberline {4}Background Estimation}{5}{section.4}
+\contentsline {section}{\numberline {5}Systematic Uncertainties}{6}{section.5}
+\contentsline {section}{\numberline {6}Results}{8}{section.6}
+\contentsline {subsection}{\numberline {6.1}Inclusive ZZ cross section measurement}{8}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}The differential ZZ cross-section measurements}{10}{subsection.6.2}
+\contentsline {section}{\numberline {7}Enhanced EWK Region of ZZ + 2jets Events}{52}{section.7}
+\contentsline {section}{\numberline {8}Conclusions}{53}{section.8}
+\contentsline {section}{\numberline {A}Unfolding}{54}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Unfolding procedure}{54}{subsection.A.1}
+\contentsline {subsection}{\numberline {A.2}Bin-to-bin migration}{55}{subsection.A.2}
+\contentsline {subsection}{\numberline {A.3}Unfolding validation test on Monte Carlo}{60}{subsection.A.3}
+\contentsline {subsubsection}{\numberline {A.3.1}Choice of the unfolding algorithm}{83}{subsubsection.A.3.1}
+\contentsline {subsection}{\numberline {A.4}Systematic Uncertainties}{86}{subsection.A.4}
+\contentsline {subsubsection}{\numberline {A.4.1}Unfolding (measurement and response matrix uncertainties)}{86}{subsubsection.A.4.1}
+\contentsline {subsubsection}{\numberline {A.4.2}$\sigma _{qq}$ and $\sigma _{gg}$ ratio}{86}{subsubsection.A.4.2}
+\contentsline {subsubsection}{\numberline {A.4.3}Choice of MC generator}{86}{subsubsection.A.4.3}
+\contentsline {subsubsection}{\numberline {A.4.4}Irreducible and reducible backgrounds}{86}{subsubsection.A.4.4}
+\contentsline {subsubsection}{\numberline {A.4.5}Unfolded Data over MC Truth ratio}{86}{subsubsection.A.4.5}
+\contentsline {subsubsection}{\numberline {A.4.6}Lepton Efficiency}{87}{subsubsection.A.4.6}
+\contentsline {subsubsection}{\numberline {A.4.7}Jet energy resolutions (JER)}{87}{subsubsection.A.4.7}
+\contentsline {subsubsection}{\numberline {A.4.8}Jet energy scale corrections (JES)}{87}{subsubsection.A.4.8}
