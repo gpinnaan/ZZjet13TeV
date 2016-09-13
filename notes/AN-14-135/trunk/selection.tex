@@ -1,53 +1,21 @@
+%The identification and reconstruction of the leptons produced in the event is the same as the one described in~\cite{ZZXSPaper}, including the final state radiation (FSR) treatment, which corrects the energy and isolation variables of the leptons from Z boson candidates when the radiated photons are
+%identified. In addition, jets are reconstructed using the anti-$k_{T}$ clustering algorithm~\cite{antiKT}, as implemented in the \texttt{FASTJET} package~\cite{FASTJET}, with a distance parameter of 0.5. In order to assure a good reconstruction efficiency, identification quality criteria are imposed on jets based on the energy fraction of the charged, electromagnetic, and neutral hadronic components.\\
+%Once reconstructed, jets are required to have a spatial separation from lepton candidates of $\Delta R = \sqrt{(\Delta\eta)^2+(\Delta\phi)^2}> 0.5$. Several effects contribute to bias the measured jet energy, such as pileup interactions, detector noise, and detector response non-uniformities in $\eta$ and non-linearities in $p_T$. The jet energy scale (JES) calibration~\cite{JESCalib, Khachatryan:2016kdb} relies on corrections which are parameterized in terms of the uncorrected $p_T$ and $\eta$ of the jet, and applied as multiplicative factors scaling the four-momentum vector of each jet. Furthermore, the jet energy resolution (JER) in data is known to be worse than in the simulation; therefore the simulated resolution is degraded to compensate for this effect. 
+%A minimum threshold of 30 GeV on the transverse
+%momentum of jets is required to ensure that they are well measured and
+%to reduce the pileup contamination. Only jets with $|\eta| < $ 4.7 are considered.\\
+%The selection is the same as~\cite{ZZXSPaper} and is here summarized briefly for convenience. Events are selected online from the presence of a pair of electrons or muons, or a triplet of electrons. Triggers requiring an electron together with a muon are also used.
+%Electrons are selected if they have $|\eta^e| < 2.5$ and transverse momentum greater than 7 GeV,  while muons are considered if they have $|\eta^{\mu}| < 2.4$ and $p^{\mu}_T > 5~\mathrm{GeV}$.
+%Moreover, electrons and muons must be isolated from the other particles and are required to originate from the primary vertex of the collision.  Leptons coming from tau decays are not considered as signal leptons. Each of the two Z candidates is formed of a pair of leptons of the same flavor and opposite charge that satisfies $60 < m_{\ell\ell} < 120$ GeV.
 
-%\fixme{This section needs to be rewritten to point to the relevant AN instead of copying and pasting them}
+%\begin{table*}[htbH]
+%\begin{center}
+%\topcaption{Scaling factors applied on MC jets to described the data resolution\label{tab:c_JER}}
+%\begin{tabular}{cccccccc}
+%\hline $|\eta|$-region & $0.0-0.5$ & $0.5-1.1$ & $1.1-1.7$ & $1.7-2.3$ & $2.3-2.8$ & $2.8-3.2$ & $3.2-5.0$\\
+%\hline $c$ & 1.079 & 1.099 & 1.121 & 1.208 & 1.254 & 1.395 & 1.056\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table*}
 
-A complete reconstruction of the individual particles emerging from each collision event is obtained
-via a particle-flow (PF) technique~\cite{CMS-PAS-PFT-09-001}, which uses the information from all CMS subdetectors. 
-%to identify and reconstruct individual particles in the collision event. 
-The identification of the particles produced in the event is the very same as the one described in~\cite{ZZXSPaper}, 
-including the final state radiation treatment.
-Also the logic to build up the ZZ candidate is the same as the Higgs boson analysis~\cite{HiggsLegacyPaper}.
-
-The CMS standard selection of runs and luminosity sections is applied, which requires high quality data with a 
-good functioning of the different sub-detectors. Events are selected online from the presence of a pair of electrons
-or muons, or a triplet of electrons. Triggers requiring an electron and a muon are also used. The
-minimal transverse momenta ($p_T$) of the first and second lepton are 17 and 8 GeV, respectively,
-for the double lepton triggers, while they are 15, 8 and 5 GeV for the triple electron trigger.
-More details can be found in~\cite{MuonTrigger}. The trigger efficiency for $ZZ$ events within the acceptance of this
-analysis is greater than 98\%. % (to check, \fixme{}).\\
-
-Events with identified and isolated primary electrons or muons are first selected by the offline
-selection. We require a $Z$ candidate formed with a pair of leptons of the same flavor and
-opposite charge. The FSR photons are kept if $|m_{\ell\ell\gamma} - m_Z | < |m_{\ell\ell} - m_Z | $ and $m_{\ell\ell\gamma} < 100$ GeV and
-in the following the presence of the photons in the $\ell\ell$ kinematics is implicit.\\ 
-The lepton pair with the invariant mass closest to the nominal $Z$ mass is denoted $Z_1$. A second $\ell^+\ell^-$ pair is required and denoted $Z_2$. If more than one $Z_2$ candidate satisfies all criteria, the pair of leptons with the highest scalar sum of $p_T$ is chosen. Both $Z$ candidates have to satisfy $60 < m_Z < 120$ GeV.
-Among the four selected leptons forming the $Z_1$ and the $Z_2$ candidates at least one should have $p_T \ge 20$ GeV and another
-one have $p_T \ge 10$ GeV  and any opposite-charge pair of leptons chosen among the four selected
-leptons satisfy $m_{\ell\ell} \ge 4$ GeV. 
-%Finally the phase space is reduced to the signal region by requiring $m_{4\ell} \ge 100$ GeV.
-
-%\fixme{say here where the jets come from}
-Jets are reconstructed using the anti-$k_{T}$ clustering 
-algorithm~\cite{antiKT}, with a size parameter of $R = 0.5$, by summing the four-momenta of individual
-PF particles according to the \texttt{FASTJET} package of reference~\cite{FASTJET}. Once reconstructed, jets overlapping
- (within $\Delta R = 0.5$) with any of the two leptons coming form the decay of the Z boson are removed from the jet collection. Jets satisfy the selection criteria recommended by Jet-MET group~\cite{JetID}. Jet energy corrections are applied as a function of the jet $p_T$ and $\eta$~\cite{JECandJER}. Moreover, they are required to have $p_T > 30$ GeV, 
- to reduce the pileup contamination as well as large uncertainty on the energy measurement, and $|\eta| < $ 4.7,
-to ensure a good quality of the tracking information.
-Since the jet energy resolution in data is worse than in simulation, the $p_T$ values of simulated
-jets need to be smeared to describe data. Following the prescription of the CMS Jet-MET group~\cite{JETRES},
-the corrected $p_T$ of the reconstructed jets are randomly smeared using a Gaussian distribution with a width 
-of $\sqrt{c^2 -1}\cdot \sigma_{MC}$, 
-where $c$ is the scaling factor (see Table~\ref{tab:c_JER}). This method only allows one to
-worsen the resolution ($c > 1$). To determine the jet resolution in simulation, $\sigma_{MC}$, recommended tools have been used~\cite{JETRES}. 
-\begin{table*}[htbH]
-\begin{center}
-\topcaption{Scaling factors applied on MC jets to described the data resolution\label{tab:c_JER}}
-\begin{tabular}{cccccccc}
-\hline $|\eta|$-region & $0.0-0.5$ & $0.5-1.1$ & $1.1-1.7$ & $1.7-2.3$ & $2.3-2.8$ & $2.8-3.2$ & $3.2-5.0$\\
-\hline $c$ & 1.079 & 1.099 & 1.121 & 1.208 & 1.254 & 1.395 & 1.056\\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-Ancillary quantities, like data/MC efficiency scale factor and jet-to-lepton fake rate, are the same as the one measured in~\cite{ZZXSPaper}.

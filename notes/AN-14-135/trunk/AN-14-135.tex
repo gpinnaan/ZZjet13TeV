@@ -21,7 +21,7 @@
 %%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
 \cmsNoteHeader{AN-14-135} % This is over-written in the CMS environment: useful as preprint no. for export versions
 % >> Title: please make sure that the non-TeX equivalent is in PDFTitle below
-\title{Measurement of the differential cross section for $pp\rightarrow ZZ \rightarrow 4 \ell$ produced in association with jets in pp collisions at $\sqrt{s}=8$~TeV}
+\title{Measurement of the differential cross section for $pp\rightarrow ZZ \rightarrow 4 \ell$ produced in association with jets in pp collisions at $\sqrt{s}=13$~TeV}
 
 % >> Authors
 %Author is always "The CMS Collaboration" for PAS and papers, so author, etc, below will be ignored in those cases
@@ -52,16 +52,7 @@
 % 1. **DO NOT use \include or \input** to include the abstract: our abstract extractor will not search through other files than this one.
 % 2. **DO NOT use %**                  to comment out sections of the abstract: the extractor will still grab those lines (and they won't be comments any longer!).
 % 3. For PASs: **DO NOT use tex macros**         in the abstract: CDS MathJax processor used on the abstract doesn't understand them _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
-\abstract{In this note we present the measurement of the differential cross section for two Z bosons produced
-in association with jets, extracted from pp collision data at $\sqrt{s}$~=~8~TeV. The measurement is done
-considering the processes with leptonic decays of the Z bosons in either electrons or muons.
-The analysis is based on a data sample collected with the CMS Experiment at the LHC, corresponding to an integrated 
-luminosity of 19.7 fb$^{-1}$. The measurements are performed in the leptonic decay modes $ZZ \to \ell\ell\ell'\ell'$, 
-where $\ell,\ell' = e, \mu$. The measured total cross section is $\sigma (pp\to ZZ) = 7.76 \pm 0.48 (stat.) ^{+0.27}_{0.29} (syst.)$ pb, 
-for both Z bosons produced in the mass range  $60 < m_{Z} < 120$ GeV and it is consistent with Standard Model
-predictions. The cross-section measured in the fiducial region corresponding to the visible phase space defined by the kinematic and geometrical acceptance of leptons is $\sigma_{pp\to ZZ \to 4\ell} =20.50 \pm 1.26~\mathrm{(stat.)}^{+0.58}_{- 0.64}~\mathrm{(syst.)}\pm 0.53~\mathrm{(lumi.)}$,
- in agreement with the SM prediction.  Differential cross sections are measured, in particular as a function of variables related to the jets
-produced in the event.
+\abstract{This note reports the measurement of the differential cross sections of two Z bosons produced in association with jets in pp collisions at a center-of-mass energy of $\sqrt{s}=13~\mathrm{TeV}$. This analysis is based on a data sample collected with the CMS experiment at the LHC, corresponding to an integrated luminosity of $12.9~\mathrm{fb}^{-1}$. Measurements are performed in the leptonic decay modes $\mathrm{ZZ}\to\ell\ell\ell'\ell'$, where $\ell,\ell' = e, \mu$. 
 }
 
 % >> PDF Metadata
@@ -72,7 +63,7 @@ produced in the event.
 % (3) No curly braces {}.
 \hypersetup{%
 pdfauthor={R. Bellan, L. Finco},%
-pdftitle={Measurement of the differential cross section for ZZ rightarrow 4 ell produced in association with jets in pp collisions at sqrt s = 8 TeV},%
+pdftitle={Measurement of the differential cross section for ZZ rightarrow 4 ell produced in association with jets in pp collisions at sqrt s = 13 TeV},%
 pdfsubject={CMS},%
 pdfkeywords={CMS, physics, software, computing}}
 
@@ -98,14 +89,14 @@ pdfkeywords={CMS, physics, software, computing}}
 
 
 %% --------------------------------------------------------- %%
-\section{Dataset and Monte Carlo Samples}
+\section{The CMS Detector and MC Samples}
 \label{sec:samples}
 \input{samples}
 %% --------------------------------------------------------- %%
 
 
 %% --------------------------------------------------------- %%
-\section{Event Selection}
+\section{Event Recontruction and Selection}
 \label{sec:selection}
 \input{selection}
 %% --------------------------------------------------------- %%
@@ -133,24 +124,24 @@ pdfkeywords={CMS, physics, software, computing}}
 %% --------------------------------------------------------- %%
 
 %% --------------------------------------------------------- %%
-\section{Enhanced EWK Region of ZZ + 2jets Events}
-\label{sec:EWKregion}
-\input{ewkregion}
+%\section{Enhanced EWK Region of ZZ + 2jets Events}
+%\label{sec:EWKregion}
+%\input{ewkregion}
 %% --------------------------------------------------------- %%
 
 
 %% --------------------------------------------------------- %%
-\section{Conclusions}
-\label{sec:conclusions}
-\input{conclusions}
+%\section{Conclusions}
+%\label{sec:conclusions}
+%\input{conclusions}
 %% --------------------------------------------------------- %%
 
-\clearpage
+%\clearpage
 
-\appendix
-\section{Unfolding}
-\label{sec:unfolding}
-\input{unfolding}
+%\appendix
+%\section{Unfolding}
+%\label{sec:unfolding}
+%\input{unfolding}
 
 % >> acknowledgements (for journal papers)
 % Please include the latest version from https://twiki.cern.ch/twiki/bin/viewauth/CMS/Internal/PubAcknow.

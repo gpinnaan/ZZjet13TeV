@@ -1,85 +1,74 @@
-Several Monte Carlo (MC) event generators are used to simulate the signal and background contributions. 
-The MC samples are used to optimize the event selection, evaluate the signal efficiency and
-acceptance, extract the unfolding response matrices and estimate the irreducible background yields. 
-The full set of MC samples used in this analysis is reported in table~\ref{tab:listofsamples}.
+A more detailed description of the CMS detector, together with a definition of the coordinate system used and the relevant kinematic variables, can be found in~\cite{CMS}; the key components for this analysis are summarized here. The CMS experiment is characterized by a superconducting solenoid located in the central region of
+the detector, providing an axial magnetic field of 3.8 T parallel to the beam direction. A silicon pixel and strip tracker, a crystal electromagnetic calorimeter (ECAL), and a brass and scintillator hadron calorimeter are located within the solenoid and cover the absolute pseudorapidity range $|\eta| < 3.0$, where pseudorapidity is defined as $\eta = - \mathrm{ln}[\mathrm{tan}(\theta/2)]$. The Forward Hadronic calorimeters (HF) are placed outside the magnet yoke, 11 m far from the interaction point, extending the pseudorapidity coverage up to $|\eta|= 5$. \\
+
+Several Monte Carlo (MC) event generators are used to simulate the signal and background contributions. The MC samples are employed to optimize the event selection, evaluate the signal efficiency and acceptance, estimate the irreducible background yields and extract the unfolding response matrices used to statistically remove experimental effects from data distributions.\\
+We use a simulation for signal processes that is largely the same as that adopted in~\cite{CMS-PAS-SMP-15-012}. Differently from the previous published analysis (FIXME MC SAMPLES), 
+the $\cPq\cPaq \to \Z\Z$ and $\cPg\cPg \to \Z\Z\cPq\cPq$ (tree-level only) processes are produced at leading-order (LO) for 0, 1 and 2 jets with \texttt{MadGraph 5.1}~\cite{MadGraph5.1}, and are compared with the inclusive ZZ production generated using \texttt{Powheg 2.0} at next-to-leading order (NLO)~\cite{PowhegMethod, PowhegBox, Melia:2011tj, Nason:2013ydw}. Since the latter does not contain events with 2 jets from the hard process, the \texttt{MadGraph} sample is expected to describe better the variables related to jets. The signal cross section is scaled to match the theoretical ZZ cross section calculated with \texttt{MCFM}~\cite{MCFM} at NLO. The \texttt{MadGraph5\_aMCatNLO} generator, which simulates signal processes at NLO for 0 and 1 jet, is also used for comparison purposes at generator level~\cite{MGatNLO}.  \\
+Furthermore,  the $\cPg\cPg  \to \Z\Z$ (box diagrams) processes are generated at LO with \texttt{MCFM 6.7} instead of \texttt{GG2ZZ}~\cite{gg2zz}. Finally, vector boson scattering processes with two Z bosons produced in association with 2 forward and backward jets, which were not considered in the previous analysis, are simulated using \texttt{Phantom}~\cite{Phantom}.\\
+Other diboson and triboson processes (WZ, Zg, ZZZ, WZZ, WWZ) and the Z + jets samples are generated at LO with \texttt{MadGraph}, like events from \ttbar production. The \texttt{PYTHIA 6.4}~\cite{Sjostrand:2006za} package is used for parton showering, hadronization, and the underlying event simulation for all MC samples but \texttt{MadGraph5\_aMCatNLO}, in which  \texttt{PYTHIA 8.0}~\cite{Sjostrand:2007gs} is employed. The default set of parton distribution functions (PDF) used for LO generators is \texttt{CTEQ6L}~\cite{CTEQ6L}, whereas \texttt{CT10}~\cite{CT10} is used for NLO generators.
+
+%%\begin{table*}[htbH]\footnotesize
+%\begin{sidewaystable}\footnotesize
+%\begin{center}\scriptsize
+%\topcaption{List of signal and background samples used in the analysis.}
+%\label{tab:listofsamples}
+%\begin{tabular}{lll}
+%\hline  Process & Cross Sections [pb] & Sample\\
+%\hline  \multicolumn{3}{l}{Signal Samples}\\
+%$ZZ\to 4\ell$ (\texttt{MadGraph}) & 0.071 (no $\tau$) & \texttt{ZZJetsTo4L\_TuneZ2star\_8TeV-madgraph-tauola/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1/AODSIM/PAT\_CMG\_V5\_15\_0/} \\ 
+%$q\bar{q}\to ZZ\to 4\mu$ (\texttt{Powheg}) & 0.07691 & \texttt{ZZTo4mu\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%$q\bar{q}\to ZZ\to 4e$  (\texttt{Powheg}) & 0.07691 & \texttt{ZZTo4e\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\ 
+%$q\bar{q} \to ZZ\to 2e2\mu$  (\texttt{Powheg})& 0.1767 & \texttt{ZZTo2e2mu\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\ 
+%$gg\to ZZ\to 4\mu$  (\texttt{MCFM})&0.000592340 &\texttt{GluGluTo4mu\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\
+%$gg\to ZZ\to 4e$  (\texttt{MCFM}) &0.000592000 &\texttt{GluGluTo4e\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\ 
+%$gg\to ZZ\to 2e2\mu$  (\texttt{MCFM})& 0.00118409 & \texttt{GluGluTo2e2mu\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\
+%$ZZ\to 4\mu +2jets$  (\texttt{Phantom})&2.49E-04 & \texttt{ZZTo4muJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\ 
+%$ZZ\to 4e +2jets$  (\texttt{Phantom})& 2.48E-04&\texttt{ZZTo4eJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\
+%$ZZ\to 2e2\mu +2jets$  (\texttt{Phantom})&5.43E-04 &\texttt{ZZTo2e2muJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\ 
+%$WZZ + jets$ (\texttt{MadGraph}) & 0.01968& \texttt{WZZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%$ZZZ + jets$ (\texttt{MadGraph}) &0.005527 &\texttt{ZZZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
+%$t\bar{t}+H$ (\texttt{Pythia}) & 0.0001081681 & \texttt{TTbarH\_HToZZTo4L\_M-126\_8TeV-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7C-v1}\\
+%\hline  \multicolumn{3}{l}{Irreducible Background Samples}\\
+%\hline$t\bar{t}+Z+Jets$ (\texttt{MadGraph})&0.2057 &\texttt{TTZJets\_8TeV-madgraph\_v2/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\ 
+%$t\bar{t}+WW+Jets$ (\texttt{MadGraph})&0.00208989 & \texttt{TTWWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\ 
+%$WWZ + jets$ (\texttt{MadGraph}) &0.05795 & \texttt{WWZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%\hline  \multicolumn{3}{l}{Reducible Background Samples}\\
+%\hline $Z$ (\texttt{MadGraph})& 3503.71& \texttt{DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
+%$WZ$ (\texttt{MadGraph})&1.057 & \texttt{WZJetsTo3LNu\_TuneZ2\_8TeV-madgraph-tauola/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%$WWW$ (\texttt{MadGraph})&0.08058 &\texttt{WWWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%$t\bar{t}+\gamma+Jets$ (\texttt{MadGraph})&1.93236 & \texttt{TTGJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
+%$t\bar{t}\to 2\ell 2\nu 2B$ (\texttt{Powheg})&23.64 &\texttt{TTTo2L2Nu2B\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
+%$t\bar{t}+W+Jets$ (\texttt{MadGraph})&0.232 &\texttt{TTWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{sidewaystable}
+%%\end{table*}
 
 
-%\begin{table*}[htbH]\footnotesize
-\begin{sidewaystable}\footnotesize
-\begin{center}\scriptsize
-\topcaption{List of signal and background samples used in the analysis.}
-\label{tab:listofsamples}
-\begin{tabular}{lll}
-\hline  Process & Cross Sections [pb] & Sample\\
-\hline  \multicolumn{3}{l}{Signal Samples}\\
-$ZZ\to 4\ell$ (\texttt{MadGraph}) & 0.071 (no $\tau$) & \texttt{ZZJetsTo4L\_TuneZ2star\_8TeV-madgraph-tauola/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1/AODSIM/PAT\_CMG\_V5\_15\_0/} \\ 
-$q\bar{q}\to ZZ\to 4\mu$ (\texttt{Powheg}) & 0.07691 & \texttt{ZZTo4mu\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-$q\bar{q}\to ZZ\to 4e$  (\texttt{Powheg}) & 0.07691 & \texttt{ZZTo4e\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\ 
-$q\bar{q} \to ZZ\to 2e2\mu$  (\texttt{Powheg})& 0.1767 & \texttt{ZZTo2e2mu\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\ 
-$gg\to ZZ\to 4\mu$  (\texttt{MCFM})&0.000592340 &\texttt{GluGluTo4mu\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\
-$gg\to ZZ\to 4e$  (\texttt{MCFM}) &0.000592000 &\texttt{GluGluTo4e\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\ 
-$gg\to ZZ\to 2e2\mu$  (\texttt{MCFM})& 0.00118409 & \texttt{GluGluTo2e2mu\_SMHContinInterf\_M-125p6\_8TeV-MCFM67-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\
-$ZZ\to 4\mu +2jets$  (\texttt{Phantom})&2.49E-04 & \texttt{ZZTo4muJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\ 
-$ZZ\to 4e +2jets$  (\texttt{Phantom})& 2.48E-04&\texttt{ZZTo4eJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1}\\
-$ZZ\to 2e2\mu +2jets$  (\texttt{Phantom})&5.43E-04 &\texttt{ZZTo2e2muJJ\_SMHContinInterf\_M-125p6\_8TeV-phantom-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V19-v1 }\\ 
-$WZZ + jets$ (\texttt{MadGraph}) & 0.01968& \texttt{WZZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-$ZZZ + jets$ (\texttt{MadGraph}) &0.005527 &\texttt{ZZZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
-$t\bar{t}+H$ (\texttt{Pythia}) & 0.0001081681 & \texttt{TTbarH\_HToZZTo4L\_M-126\_8TeV-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7C-v1}\\
-\hline  \multicolumn{3}{l}{Irreducible Background Samples}\\
-\hline$t\bar{t}+Z+Jets$ (\texttt{MadGraph})&0.2057 &\texttt{TTZJets\_8TeV-madgraph\_v2/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\ 
-$t\bar{t}+WW+Jets$ (\texttt{MadGraph})&0.00208989 & \texttt{TTWWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\ 
-$WWZ + jets$ (\texttt{MadGraph}) &0.05795 & \texttt{WWZNoGstarJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-\hline  \multicolumn{3}{l}{Reducible Background Samples}\\
-\hline $Z$ (\texttt{MadGraph})& 3503.71& \texttt{DYJetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph-tarball/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
-$WZ$ (\texttt{MadGraph})&1.057 & \texttt{WZJetsTo3LNu\_TuneZ2\_8TeV-madgraph-tauola/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-$WWW$ (\texttt{MadGraph})&0.08058 &\texttt{WWWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-$t\bar{t}+\gamma+Jets$ (\texttt{MadGraph})&1.93236 & \texttt{TTGJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1}\\
-$t\bar{t}\to 2\ell 2\nu 2B$ (\texttt{Powheg})&23.64 &\texttt{TTTo2L2Nu2B\_8TeV-powheg-pythia6/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
-$t\bar{t}+W+Jets$ (\texttt{MadGraph})&0.232 &\texttt{TTWJets\_8TeV-madgraph/Summer12\_DR53X-PU\_S10\_START53\_V7A-v1 }\\
-\hline
-\end{tabular}
-\end{center}
-\end{sidewaystable}
+%The data sets processed in this analysis are summarized in table~\ref{tab:datasamples}, along with the trigger selection operated on them (based on the same selection presented in~\cite{HiggsLegacyPaper, ZZXSPaper}).
+
+%\begin{table*}
+%\begin{center}
+%\topcaption{List of data samples used in the analysis: 22Jan2013ReReco reprocessing of DoubleMu, DoubleEle, MuEG; total integrated luminosity
+%of $19.7~\mathrm{fb}^{-1}$.}
+%\label{tab:datasamples}
+%\begin{tabular}{l}
+%\hline  \textbf{Data Samples} \\
+%\hline  DoubleMu/Run2012A-22Jan2013-v1\\
+%DoubleMuParked/Run2012B-22Jan2013-v1\\
+%DoubleMuParked/Run2012C-22Jan2013-v1\\
+%DoubleMuParked/Run2012D-22Jan2013-v1\\
+%DoubleElectron/Run2012A-22Jan2013-v1\\
+%DoubleElectron/Run2012B-22Jan2013-v1\\
+%DoubleElectron/Run2012C-22Jan2013-v1\\
+%DoubleElectron/Run2012D-22Jan2013-v1\\
+%MuEG/Run2012A-22Jan2013-v1\\
+%MuEG/Run2012B-22Jan2013-v1\\
+%MuEG/Run2012C-22Jan2013-v1\\
+%MuEG/Run2012D-22Jan2013-v1\\
+%\hline
+%\end{tabular}
+%\end{center}
 %\end{table*}
-
-The $qq/qg \to ZZ$ and $gg \to ZZ$ (tree-level only) processes are generated at leading-order (LO) for 0, 1 and 2 jets with
-\texttt{MadGraph 5.1}~\cite{MadGraph5.1}, while the $gg \to ZZ$ (box diagrams) processes are generated at LO with \texttt{MCFM}~\cite{MCFM}.
-For comparison we also use signal $qq/qg \to ZZ$ samples generated with \texttt{Powheg} (NLO for 0 jet)~\cite{PowhegMethod, PowhegBox} and \texttt{MadGraph5\_aMCatNLO} (NLO for 1 jet)~\cite{MGatNLO}. 
-Vector boson scattering processes with two $Z$ bosons produced in association with 2 forward and backward jets are simulated using \texttt{Phantom}~\cite{Phantom}. 
-Other diboson and triboson processes ($WZ$, $Zg$, $ZZZ$, $WZZ$, $WWZ$) and the $Z$ + jets samples are generated at 
-LO with \texttt{MadGraph}, like events from $t\bar{t}$ production. The \texttt{PYTHIA 6.4}~\cite{Sjostrand:2006za} package is used for parton showering, hadronization, and the underlying event simulation. 
-The default set of parton distribution functions (PDF) used for LO generators
-is \texttt{CTEQ6L}~\cite{CTEQ6L}, whereas \texttt{CT10}~\cite{CT10} is used for NLO generators. The $ZZ$ yields from simulation
-are scaled according to the theoretical cross sections calculated with MCFM.
-
-The data samples used in this analysis correspond to an integrated luminosity of 19.7 fb$^{-1}$ at $\sqrt{s}= 8$ TeV
-collected in 2012. The integrated luminosity is measured using data from the HF
-system and the pixel detector~\cite{CMS-PAS-LUM-13-001}. The uncertainty in the integrated luminosity measurement is
-2.6\%.
-
-The data sets processed in this analysis are summarized in table~\ref{tab:datasamples}, along with the trigger selection operated on them (based on the same selection presented in~\cite{HiggsLegacyPaper, ZZXSPaper}).
-
-\begin{table*}
-\begin{center}
-\topcaption{List of data samples used in the analysis: 22Jan2013ReReco reprocessing of DoubleMu, DoubleEle, MuEG; total integrated luminosity
-of $19.7~\mathrm{fb}^{-1}$.}
-\label{tab:datasamples}
-\begin{tabular}{l}
-\hline  \textbf{Data Samples} \\
-\hline  DoubleMu/Run2012A-22Jan2013-v1\\
-DoubleMuParked/Run2012B-22Jan2013-v1\\
-DoubleMuParked/Run2012C-22Jan2013-v1\\
-DoubleMuParked/Run2012D-22Jan2013-v1\\
-DoubleElectron/Run2012A-22Jan2013-v1\\
-DoubleElectron/Run2012B-22Jan2013-v1\\
-DoubleElectron/Run2012C-22Jan2013-v1\\
-DoubleElectron/Run2012D-22Jan2013-v1\\
-MuEG/Run2012A-22Jan2013-v1\\
-MuEG/Run2012B-22Jan2013-v1\\
-MuEG/Run2012C-22Jan2013-v1\\
-MuEG/Run2012D-22Jan2013-v1\\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
 
