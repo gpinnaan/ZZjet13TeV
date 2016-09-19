@@ -1,0 +1,158 @@
+% Customizable fields and text areas start with % >> below.
+% Lines starting with the comment character (%) are normally removed before release outside the collaboration, but not those comments ending lines
+
+% svn info. These are modified by svn at checkout time.
+% The last version of these macros found before the maketitle will be the one on the front page,
+%so only the main file is tracked.
+% Do not edit by hand!
+\RCS$Revision: 343919 $
+\RCS$HeadURL: svn+ssh://svn.cern.ch/reps/tdr2/notes/AN-14-135/trunk/AN-XX-YYY.tex $
+\RCS$Id: AN-XX-YYY.tex 343919 2016-05-23 16:05:58Z lfinco $
+%%%%%%%%%%%%% local definitions %%%%%%%%%%%%%%%%%%%%%
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[utf8]{inputenc}
+% This allows for switching between one column and two column (cms@external) layouts
+% The widths should  be modified for your particular figures. You'll need additional copies if you have more than one standard figure size.
+\newlength\cmsFigWidth
+\ifthenelse{\boolean{cms@external}}{\setlength\cmsFigWidth{0.85\columnwidth}}{\setlength\cmsFigWidth{0.4\textwidth}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsLeft}{top}}{\providecommand{\cmsLeft}{left}}
+\ifthenelse{\boolean{cms@external}}{\providecommand{\cmsRight}{bottom}}{\providecommand{\cmsRight}{right}}
+%%%%%%%%%%%%%%%  Title page %%%%%%%%%%%%%%%%%%%%%%%%
+\cmsNoteHeader{AN-XX-YYY} % This is over-written in the CMS environment: useful as preprint no. for export versions
+% >> Title: please make sure that the non-TeX equivalent is in PDFTitle below
+\title{Measurement of the differential cross section for $pp\rightarrow ZZ \rightarrow 4 \ell$ produced in association with jets in pp collisions at $\sqrt{s}=13$~TeV}
+
+% >> Authors
+%Author is always "The CMS Collaboration" for PAS and papers, so author, etc, below will be ignored in those cases
+%For multiple affiliations, create an address entry for the combination
+%To mark authors as primary, use the \author* form
+
+\address[unito]{Universi\`a degli Studi di Torino and INFN.}
+\address[infnto]{INFN Torino.}
+\address[hig]{The Higgs to four leptons team.}
+\author[unito]{N. Amapane}
+\author[unito]{R. Bellan} 
+\author[unito]{R. Covarelli} 
+\author[unito]{L. Finco}
+\author[unito]{R. Gomez Ambrosio}
+\author[infnto]{C. Mariotti}  
+\author[unito]{G. Pinna}
+\author[hig]{many other people}
+
+% >> Date
+% The date is in yyyy/mm/dd format. Today has been
+% redefined to match, but if the date needs to be fixed, please write it in this fashion.
+% For papers and PAS, \today is taken as the date the head file (this one) was last modified according to svn: see the RCS Id string above.
+% For the final version it is best to "touch" the head file to make sure it has the latest date.
+\date{\today}
+
+% >> Abstract
+% Abstract processing:
+% 1. **DO NOT use \include or \input** to include the abstract: our abstract extractor will not search through other files than this one.
+% 2. **DO NOT use %**                  to comment out sections of the abstract: the extractor will still grab those lines (and they won't be comments any longer!).
+% 3. For PASs: **DO NOT use tex macros**         in the abstract: CDS MathJax processor used on the abstract doesn't understand them _and_ will only look within $$. The abstracts for papers are hand formatted so macros are okay.
+\abstract{This note reports the measurement of the differential cross sections of two Z bosons produced in association with jets in pp collisions at a center-of-mass energy of $\sqrt{s}=13~\mathrm{TeV}$. This analysis is based on a data sample collected with the CMS experiment at the LHC, corresponding to an integrated luminosity of $12.9~\mathrm{fb}^{-1}$. Measurements are performed in the leptonic decay modes $\mathrm{ZZ}\to\ell\ell\ell'\ell'$, where $\ell,\ell' = e, \mu$. 
+}
+
+% >> PDF Metadata
+% Do not comment out the following hypersetup lines (metadata). They will disappear in NODRAFT mode and are needed by CDS.
+% Also: make sure that the values of the metadata items are sensible and are in plain text:
+% (1) no TeX! -- for \sqrt{s} use sqrt(s) -- this will show with extra quote marks in the draft version but is okay).
+% (2) no %.
+% (3) No curly braces {}.
+\hypersetup{%
+pdfauthor={R. Bellan, L. Finco},%
+pdftitle={Measurement of the differential cross section for ZZ rightarrow 4 ell produced in association with jets in pp collisions at sqrt s = 13 TeV},%
+pdfsubject={CMS},%
+pdfkeywords={CMS, physics, software, computing}}
+
+\maketitle %maketitle comes after all the front information has been supplied
+% >> Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% **DO NOT REMOVE THE BIBLIOGRAPHY** which is located before the appendix.
+%% You can take the text between here and the bibiliography as an example which you should replace with the actual text of your document.
+%% If you include other TeX files, be sure to use "\input{filename}" rather than "\input filename".
+%% The latter works for you, but our parser looks for the braces and will break when uploading the document.
+%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Begin text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% --------------------------------------------------------- %%
+\section{Introduction}
+\label{sec:introduction}
+\input{introduction}
+%% --------------------------------------------------------- %%
+
+
+%% --------------------------------------------------------- %%
+\section{The CMS Detector and MC Samples}
+\label{sec:samples}
+\input{samples}
+%% --------------------------------------------------------- %%
+
+
+%% --------------------------------------------------------- %%
+\section{Event Recontruction and Selection}
+\label{sec:selection}
+\input{selection}
+%% --------------------------------------------------------- %%
+
+
+%% --------------------------------------------------------- %%
+\section{Background Estimation}
+\label{sec:background}
+\input{background}
+%% --------------------------------------------------------- %%
+
+
+%% --------------------------------------------------------- %%
+\section{Systematic Uncertainties}
+\label{sec:systunc}
+\input{systunc}
+%% --------------------------------------------------------- %%
+
+
+
+%% --------------------------------------------------------- %%
+\section{Results}
+\label{sec:results}
+\input{results}
+%% --------------------------------------------------------- %%
+
+%% --------------------------------------------------------- %%
+%\section{Enhanced EWK Region of ZZ + 2jets Events}
+%\label{sec:EWKregion}
+%\input{ewkregion}
+%% --------------------------------------------------------- %%
+
+
+%% --------------------------------------------------------- %%
+%\section{Conclusions}
+%\label{sec:conclusions}
+%\input{conclusions}
+%% --------------------------------------------------------- %%
+
+%\clearpage
+
+%\appendix
+%\section{Unfolding}
+%\label{sec:unfolding}
+%\input{unfolding}
+
+% >> acknowledgements (for journal papers)
+% Please include the latest version from https://twiki.cern.ch/twiki/bin/viewauth/CMS/Internal/PubAcknow.
+%\section*{Acknowledgements}
+% ack-text
+
+%% **DO NOT REMOVE BIBLIOGRAPHY**
+\bibliography{auto_generated}   % will be created by the tdr script.
+
+%% examples of appendices. **DO NOT PUT \end{document} at the end
+%\clearpage
+
+%%% DO NOT ADD \end{document}!
+

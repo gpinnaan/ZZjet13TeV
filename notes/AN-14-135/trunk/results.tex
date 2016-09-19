@@ -1,0 +1,28 @@
+The differential pp~$\to \Z\Z\to \ell\ell\ell'\ell'$ cross section is determined as a function of the jet multiplicity, the invariant mass of the two most energetic jets ($m_{jj}$), the 
+difference in pseudorapidity between them ($\Delta\eta_{jj}$), their transverse momentum and pseudorapidity 
+(leading jet $p_{T}(\eta)^{jet1}$ and sub-leading jet $p_{T}(\eta)^{jet2}$). Both jets with  $|\eta^{jet}|<4.7$ and 
+central jets with $|\eta^{jet}|<2.4$ are considered separately. Measurements are performed in a fiducial region, called ``wide region'',  defined by requiring the invariant mass of each Z boson candidate between 60 and 120 GeV. Moreover, they are also obtained in a ``tight region'', defined by requiring also leptons with $p^e_T > 7~\mathrm{GeV}$ and $|\eta^e| < 2.5$ if electrons and $p^{\mu}_T > 5~\mathrm{GeV}$ and $|\eta^{\mu}| < 2.4$ if muons, at least one lepton with $p_T > 20~\mathrm{GeV}$ and another one with $p_T > 10~\mathrm{GeV}$.
+Each distribution is corrected for event selection efficiencies and for detector resolution effects in order to be 
+compared with predictions from event generators. The correction procedure is based on the iterative D'Agostini's method unfolding technique~\cite{DAgostini}, implemented in the \texttt{RooUnfold} toolkit~\cite{RooUnfold}. The algorithm uses a response matrix that correlates the observable with and without detector effects.\\
+For each measured distribution, a response matrix is evaluated using two different sets of generators: the first 
+one is composed of signal samples generated with \texttt{MadGraph} ($\cPq\cPaq \to \Z\Z$), \texttt{MCFM} ($\cPg\cPg \to \Z\Z$) 
+and \texttt{Phantom} ($\cPq\cPaq \to \Z\Z$ + 2 jets). In the second one the \texttt{Powheg} sample ($\cPq\cPaq \to \Z\Z$) is used 
+instead of the \texttt{MadGraph} one. The \texttt{MadGraph} set is the reference set, while the  \texttt{Powheg} 
+one is used for comparison purposes and to extract the systematic uncertainty due to the Monte Carlo generator choice. \\
+Distributions of the corrected number of events are then divided by the bin width and by the integrated luminosity and are normalized to the unity. The normalized differential distributions as a function of the jet multiplicity and as a function of the invariant mass of the 4-lepton system are reported in Figs.~\ref{fig:xs_jets} and~\ref{fig:xs_mass} for the wide (left) and tight (right) fiducial regions.
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=1.2\cmsFigWidth]{Figures/diffCrossSecZZTo4lJets_Unfolded_MadGraph_norm.pdf}     
+    \includegraphics[width=1.2\cmsFigWidth]{Figures/diffCrossSecZZTo4lJets_Unfolded_MadGraph_tight_norm.pdf}     
+   \caption{\footnotesize{Normalized differential cross sections of $\Z\Z\to 4\ell$ processes as a function of the multiplicity of jets obtained in the wide (left) and tight (right) fiducial regions.}}
+   \label{fig:xs_jets}
+  \end{center}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=1.2\cmsFigWidth]{Figures/diffCrossSecZZTo4lMass_Unfolded_MadGraph_norm.pdf}     
+    \includegraphics[width=1.2\cmsFigWidth]{Figures/diffCrossSecZZTo4lMass_Unfolded_MadGraph_tight_norm.pdf}     
+   \caption{\footnotesize{Normalized differential cross sections of $\Z\Z\to 4\ell$ processes as a function of the invariant mass of the 4-lepton system obtained in the wide (left) and tight (right) fiducial regions.}}
+   \label{fig:xs_mass}
+  \end{center}
+\end{figure}
